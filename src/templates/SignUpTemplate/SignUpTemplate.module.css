@@ -1,0 +1,29 @@
+.root {
+  padding: 40px 20px;
+  background-color: var(--white);
+  min-height: 100vh;
+}
+
+.root h1 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.root .form {
+  padding: 40px 0;
+}
+.inputWrapper + .inputWrapper {
+  margin-top: 16px;
+}
+
+.buttonWrapper + .buttonWrapper {
+  margin-top: 60px;
+}
+
+.buttonWrapper > p {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  margin-bottom: 8px;
+}
