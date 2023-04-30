@@ -1,0 +1,24 @@
+.root {
+  height: 54px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--gray);
+  position: relative;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 12px;
+  color: val(--gray);
+}
+
+.menu {
+  position: absolute;
+  top: 48px;
+  right: 16px;
+  z-index: 1;
+}
