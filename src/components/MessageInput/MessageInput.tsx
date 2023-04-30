@@ -1,5 +1,5 @@
 import { ChangeEvent, FC } from 'react';
-import { SearchIcon } from '@/components/icons';
+import { PencilLineIcon } from '@/components/icons';
 import styles from './MessageInput.module.css';
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 export const MessageInput: FC<Props> = ({ value, onChange }) => {
   return (
     <div className={styles.root}>
-      <SearchIcon />
+      <PencilLineIcon />
       <input
         className={styles.input}
         type='text'
