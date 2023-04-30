@@ -5,6 +5,8 @@ import { Room } from '@/types';
 import { SearchInput } from '@/components/SearchInput';
 import styles from './RoomsTemplate.module.css';
 import { RoomItem } from '@/components/RoomItem';
+import { IconButton } from '@/components/IconButton';
+import { PlusCircleIcon } from '@/components/icons';
 
 type Props = {
   rooms: Room[];
@@ -24,9 +26,10 @@ export const RoomsTemplate: FC<Props> = ({ rooms }) => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <Button
-          label='追加'
-          size='medium'
+        <IconButton
+          icon={<PlusCircleIcon />}
+          width={32}
+          height={32}
           onClick={() => setOpenMenu(!openMenu)}
         />
       </div>
