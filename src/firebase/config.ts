@@ -5,12 +5,12 @@ import { initializeApp } from 'firebase/app';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyD4bbbGWLhbMZpRK7pontJnzxYmT94YUWI',
-  authDomain: 'chat-app-2023-a104a.firebaseapp.com',
-  projectId: 'chat-app-2023-a104a',
-  storageBucket: 'chat-app-2023-a104a.appspot.com',
-  messagingSenderId: '485759168552',
-  appId: '1:485759168552:web:a52f3c88b38e66e700051d',
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
 };
 
 // Initialize Firebase

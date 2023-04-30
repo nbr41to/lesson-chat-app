@@ -1,13 +1,10 @@
 .root {
-  padding: 16px;
   background-color: var(--white);
   min-height: 100vh;
 }
 
-.pageHeader {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+.pageBody {
+  padding: 16px;
 }
 
 .messageList {
