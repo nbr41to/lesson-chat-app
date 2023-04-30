@@ -1,4 +1,8 @@
 .root {
   height: 54px;
   background-color: var(--orange);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
 }

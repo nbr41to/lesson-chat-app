@@ -1,14 +1,26 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
-import styles from '@/styles/Home.module.css';
-
-const inter = Inter({ subsets: ['latin'] });
+import { useEffect, useState } from 'react';
+import { Room } from '@/types';
+import { getRooms } from '@/firebase/rooms';
+import { RoomsTemplate } from '@/templates/RoomsTemplate';
 
 export default function Rooms() {
+  const [rooms, setRooms] = useState<Room[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getRooms();
+      console.log(response);
+      setRooms(response);
+    })();
+  }, []);
+
   return (
-    <div>
-      <h1>Rooms</h1>
-    </div>
+    <>
+      <Head>
+        <title>Rooms</title>
+      </Head>
+      <RoomsTemplate rooms={rooms} onCreateRoom={() => {}} />
+    </>
   );
 }

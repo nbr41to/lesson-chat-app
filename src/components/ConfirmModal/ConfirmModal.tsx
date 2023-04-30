@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
 import styles from './ConfirmModal.module.css';
 import { Button } from '@/components/Button';
+import { CautionIcon } from '@/components/icons';
 
 type Props = {
   open: boolean;
@@ -28,6 +29,7 @@ export const ConfirmModal: FC<Props> = ({
           {/* Overlay */}
           <div className={styles.overlay} onClick={onClose} />
           <div className={styles.content}>
+            <CautionIcon />
             <p>{message}</p>
             <div className={styles.buttonWrapper}>
               <Button

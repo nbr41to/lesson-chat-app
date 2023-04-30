@@ -1,0 +1,26 @@
+.root {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+}
+.container {
+  flex-grow: 1;
+  overflow: hidden;
+}
+.container .name {
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 12px;
+}
+.container .latestMessage {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  margin-top: 8px;
+  color: var(--gray);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -15,14 +15,6 @@ const meta: Meta<typeof ConfirmModal> = {
 export default meta;
 type Story = StoryObj<typeof ConfirmModal>;
 
-export const Primary: Story = {
-  args: {},
-};
-
-export const Secondary: Story = {
-  args: {},
-};
-
-export const Small: Story = {
+export const Default: Story = {
   args: {},
 };

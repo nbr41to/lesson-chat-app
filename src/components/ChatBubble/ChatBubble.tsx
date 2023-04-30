@@ -7,8 +7,8 @@ type Props = {
 } & (
   | {
       isOwn: true;
-      iconUrl: undefined;
-      name: undefined;
+      iconUrl?: undefined;
+      name?: undefined;
     }
   | {
       isOwn: false;
