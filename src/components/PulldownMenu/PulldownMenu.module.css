@@ -1,0 +1,27 @@
+.root {
+  background-color: var(--gray);
+  border-radius: 15px;
+  width: 176px;
+  padding: 0 16px;
+  color: var(--white);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  cursor: pointer;
+}
+.item + .item {
+  border-top: 1px solid var(--white);
+}
+
+.item .label {
+  display: flex;
+  align-items: center;
+
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+}

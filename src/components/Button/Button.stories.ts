@@ -27,11 +27,13 @@ export const Secondary: Story = {
 
 export const Medium: Story = {
   args: {
+    label: 'キャンセル',
     size: 'medium',
   },
 };
 export const Small: Story = {
   args: {
+    label: '編集',
     size: 'small',
   },
 };

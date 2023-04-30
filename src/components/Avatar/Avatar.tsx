@@ -5,7 +5,7 @@ import Image from 'next/image';
 type Props = {
   url: string;
   name?: string;
-  size?: 'small' | 'medium';
+  size?: 'small' | 'medium' | 'large'; // TODO: large 対応
 };
 
 export const Avatar: FC<Props> = ({ url, name, size = 'medium' }) => {

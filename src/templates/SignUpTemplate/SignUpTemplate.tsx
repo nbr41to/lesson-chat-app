@@ -3,6 +3,7 @@ import { Input } from '@/components/Input';
 import { Button } from '@/components/Button';
 import { useRouter } from 'next/router';
 import styles from './SignUpTemplate.module.css';
+import { signUp } from '@/firebase/authentication';
 
 type Props = {};
 
@@ -12,7 +13,9 @@ export const SignUpTemplate: FC<Props> = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const signup = () => {};
+  const handleSignUp = () => {
+    signUp({ name, email, password });
+  };
 
   return (
     <div className={styles.root}>
@@ -45,7 +48,7 @@ export const SignUpTemplate: FC<Props> = () => {
       </div>
 
       <div className={styles.buttonWrapper}>
-        <Button label='登録' variant='primary' onClick={signup} />
+        <Button label='登録' variant='primary' onClick={handleSignUp} />
       </div>
       <div className={styles.buttonWrapper}>
         <p>すでにアカウントをお持ちの方</p>
