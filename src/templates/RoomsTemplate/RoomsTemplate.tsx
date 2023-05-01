@@ -1,23 +1,24 @@
 import { FC, useState } from 'react';
-import { Button } from '@/components/Button';
 import { useRouter } from 'next/router';
 import { Room } from '@/types';
 import { SearchInput } from '@/components/SearchInput';
 import styles from './RoomsTemplate.module.css';
 import { RoomItem } from '@/components/RoomItem';
-import { IconButton } from '@/components/IconButton';
-import { PlusCircleIcon } from '@/components/icons';
+import {
+  ChatCircleIcon,
+  PlusCircleIcon,
+  UserPlusIcon,
+} from '@/components/icons';
+import { PulldownMenu } from '@/components/PulldownMenu';
 
 type Props = {
   rooms: Room[];
-  onCreateRoom: (room: Room) => void;
+  onCreateRoom: () => void;
 };
 
-export const RoomsTemplate: FC<Props> = ({ rooms }) => {
+export const RoomsTemplate: FC<Props> = ({ rooms, onCreateRoom }) => {
   const router = useRouter();
   const [searchText, setSearchText] = useState('');
-  const [openMenu, setOpenMenu] = useState(false);
-  console.log(rooms);
 
   return (
     <div className={styles.root}>
@@ -26,11 +27,23 @@ export const RoomsTemplate: FC<Props> = ({ rooms }) => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <IconButton
-          icon={<PlusCircleIcon />}
+
+        <PulldownMenu
+          buttonIcon={<PlusCircleIcon width='32px' height='32px' />}
+          data={[
+            {
+              icon: <ChatCircleIcon />,
+              label: 'ルーム作成',
+              onClick: onCreateRoom,
+            },
+            {
+              icon: <UserPlusIcon />,
+              label: 'フレンド追加',
+              onClick: () => {},
+            },
+          ]}
           width={32}
           height={32}
-          onClick={() => setOpenMenu(!openMenu)}
         />
       </div>
 
@@ -38,7 +51,7 @@ export const RoomsTemplate: FC<Props> = ({ rooms }) => {
         {rooms.map((room) => (
           <RoomItem
             key={room.id}
-            room={rooms[0]}
+            room={room}
             latestMessage='最新のメッセージ'
             onClick={() => router.push(`/rooms/${room.id}`)}
           />

@@ -5,7 +5,18 @@ import { RoomsTemplate } from './RoomsTemplate';
 const meta: Meta<typeof RoomsTemplate> = {
   component: RoomsTemplate,
   tags: ['autodocs'],
-  args: {},
+  args: {
+    rooms: [
+      {
+        id: 'room-id',
+        ownerId: 'owner-id',
+        thumbnailUrl: './avatar_1.png',
+        name: 'さやか',
+        users: [],
+        messages: [],
+      },
+    ],
+  },
 };
 
 export default meta;

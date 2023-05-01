@@ -1,5 +1,5 @@
-import { getCurrentUser } from '@/firebase/authentication';
-import { addMessage, getMessages } from '@/firebase/messages';
+import { addMessage } from '@/firebase/messages';
+import { onSnapshotMessages } from '@/firebase/onSnapshotMessages';
 import { getRoom } from '@/firebase/rooms';
 import { RoomTemplate } from '@/templates/RoomTemplate';
 import { Message, Room } from '@/types';
@@ -15,12 +15,19 @@ export default function Room() {
 
   useEffect(() => {
     if (!roomId) return;
+
+    const unsubscribe = onSnapshotMessages(roomId, (messages) => {
+      setMessages(messages);
+    });
+
     (async () => {
-      const responseMessages = await getMessages(roomId);
       const responseRoom = await getRoom(roomId);
-      setMessages(responseMessages);
       setRoom(responseRoom);
     })();
+
+    return () => {
+      unsubscribe();
+    };
   }, [roomId]);
 
   const handleCreateMessage = (content: string) => {

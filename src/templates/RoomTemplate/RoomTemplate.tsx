@@ -1,10 +1,10 @@
 import { FC, useState } from 'react';
-import { useRouter } from 'next/router';
 import { Message, Room } from '@/types';
 import styles from './RoomTemplate.module.css';
 import { ChatBubble } from '@/components/ChatBubble';
 import { MessageInput } from '@/components/MessageInput';
 import { RoomHeader } from '@/components/RoomHeader';
+import { getCurrentUser } from '@/firebase/authentication';
 
 type Props = {
   room: Room;
@@ -17,9 +17,13 @@ export const RoomTemplate: FC<Props> = ({
   messages,
   onCreateMessage,
 }) => {
-  const router = useRouter();
   const [messageText, setMessageText] = useState('');
-  console.log(messages);
+  const currentUser = getCurrentUser();
+
+  const handleCreateMessage = () => {
+    onCreateMessage(messageText);
+    setMessageText('');
+  };
 
   return (
     <div className={styles.root}>
@@ -31,7 +35,15 @@ export const RoomTemplate: FC<Props> = ({
             <ChatBubble
               key={message.id}
               message={message.content}
-              isOwn={true}
+              isOwn={currentUser?.uid === message.userId}
+              name={
+                room.users.find((user) => user.id === message.userId)?.name ||
+                ''
+              }
+              iconUrl={
+                room.users.find((user) => user.id === message.userId)
+                  ?.avatarUrl || ''
+              }
             />
           ))}
         </div>
@@ -41,7 +53,7 @@ export const RoomTemplate: FC<Props> = ({
             value={messageText}
             onChange={(e) => setMessageText(e.target.value)}
           />
-          <button onClick={() => onCreateMessage(messageText)}>送信</button>
+          <button onClick={handleCreateMessage}>送信</button>
         </div>
       </div>
     </div>

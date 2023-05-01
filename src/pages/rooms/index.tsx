@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { Room } from '@/types';
-import { getRooms } from '@/firebase/rooms';
+import { createRoom, getRooms } from '@/firebase/rooms';
 import { RoomsTemplate } from '@/templates/RoomsTemplate';
 
 export default function Rooms() {
@@ -15,12 +15,20 @@ export default function Rooms() {
     })();
   }, []);
 
+  const handleCreateRoom = () => {
+    createRoom({
+      name: 'New Room',
+      thumbnailUrl: 'https://picsum.photos/100',
+      userIds: ['paPVFUZHApbygZz2VW7mm2FprQl2'],
+    });
+  };
+
   return (
     <>
       <Head>
         <title>Rooms</title>
       </Head>
-      <RoomsTemplate rooms={rooms} onCreateRoom={() => {}} />
+      <RoomsTemplate rooms={rooms} onCreateRoom={handleCreateRoom} />
     </>
   );
 }

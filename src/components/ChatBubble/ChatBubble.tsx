@@ -4,20 +4,17 @@ import { Avatar } from '@/components/Avatar';
 
 type Props = {
   message: string;
-} & (
-  | {
-      isOwn: true;
-      iconUrl?: undefined;
-      name?: undefined;
-    }
-  | {
-      isOwn: false;
-      iconUrl: string;
-      name: string;
-    }
-);
+  isOwn: boolean;
+  iconUrl?: string;
+  name?: string;
+};
 
-export const ChatBubble: FC<Props> = ({ message, isOwn, iconUrl, name }) => {
+export const ChatBubble: FC<Props> = ({
+  message,
+  isOwn,
+  iconUrl = '',
+  name,
+}) => {
   const bubbleDirection = isOwn ? styles.rightBubble : styles.leftBubble;
 
   return (
