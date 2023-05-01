@@ -18,7 +18,9 @@ export type Room = {
   id: string;
   ownerId: string;
   name: string;
+  userIds: string[];
   users: User[];
-  messages: Message[];
   thumbnailUrl: string;
 };
+
+export type CreateRoomParams = Omit<Room, 'id' | 'ownerId' | 'users'>;

@@ -17,7 +17,6 @@ type Props = {
 
 export const RoomHeader: FC<Props> = ({ name, amount }) => {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
   const amountString = amount > 2 ? `(${amount})` : '';
 
   return (
@@ -32,30 +31,21 @@ export const RoomHeader: FC<Props> = ({ name, amount }) => {
         {name}
         {amountString}
       </div>
-      <IconButton
-        icon={<DotsThreeIcon />}
-        width={24}
-        height={24}
-        onClick={() => setOpen(!open)}
+      <PulldownMenu
+        buttonIcon={<DotsThreeIcon />}
+        data={[
+          {
+            icon: <UsersThreeIcon />,
+            label: 'メンバー',
+            onClick: () => {},
+          },
+          {
+            icon: <PencilIcon />,
+            label: 'グループ編集',
+            onClick: () => {},
+          },
+        ]}
       />
-      {open && (
-        <div className={styles.menu}>
-          <PulldownMenu
-            data={[
-              {
-                icon: <UsersThreeIcon />,
-                label: 'メンバー',
-                onClick: () => {},
-              },
-              {
-                icon: <PencilIcon />,
-                label: 'グループ編集',
-                onClick: () => {},
-              },
-            ]}
-          />
-        </div>
-      )}
     </header>
   );
 };
