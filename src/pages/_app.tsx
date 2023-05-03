@@ -3,7 +3,6 @@ import { Header } from '@/components/Header';
 import { AuthContext } from '@/context/auth';
 import { User } from 'firebase/auth';
 import { Inter } from 'next/font/google';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { onAuthStateChange } from '@/firebase/authentication';
 import { useRouter } from 'next/router';
@@ -18,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const isPublicRoute = publicRoutes.includes(router.pathname);
+    const isPublicRoute = publicRoutes.includes(router.pathname); // TODO:トップも含める
     const unsubscribe = onAuthStateChange((user) => {
       if (!user && !isPublicRoute) {
         router.push('/login');
@@ -35,21 +34,6 @@ export default function App({ Component, pageProps }: AppProps) {
         <Header />
         <Component {...pageProps} />
         {user !== null && <FooterMenu />}
-
-        <div style={{ position: 'fixed', top: 0, left: 0, zIndex: 999 }}>
-          <Link href='/'>Top</Link>
-          <br />
-          <Link href='/signup'>SignUp</Link>
-          <br />
-          <Link href='/login'>Login</Link>
-          <br />
-          <Link href='/rooms'>Rooms</Link>
-          <br />
-          <Link href='/rooms/room-id'>Room</Link>
-          <br />
-          <Link href='/account'>Account</Link>
-          <br />
-        </div>
       </div>
     </AuthContext.Provider>
   );
