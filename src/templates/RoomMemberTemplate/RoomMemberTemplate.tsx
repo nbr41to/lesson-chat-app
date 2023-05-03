@@ -31,10 +31,10 @@ export const RoomMemberTemplate: FC<Props> = ({ room }) => {
         </div>
 
         <div className={styles.copyLink}>
-          <p>グループのリンク：xxxxxxxxxxxxxxxxxx</p>
-          <Button label='グループのリンクをコピー' onClick={() => {}} />
+          <p>ルームのリンク：xxxxxxxxxxxxxxxxxx</p>
+          <Button label='ルームのリンクをコピー' onClick={() => {}} />
         </div>
-        <Button variant='secondary' label='グループを退会' onClick={() => {}} />
+        <Button variant='secondary' label='ルームを退会' onClick={() => {}} />
       </div>
     </div>
   );

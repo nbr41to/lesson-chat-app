@@ -21,6 +21,11 @@ export const PulldownMenu: FC<Props> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleClick = (onClick: () => void) => {
+    onClick();
+    setIsOpen(false);
+  };
+
   return (
     <div className={styles.root}>
       <IconButton
@@ -34,7 +39,11 @@ export const PulldownMenu: FC<Props> = ({
           <div className={styles.overlay} onClick={() => setIsOpen(false)} />
           <div className={styles.menu}>
             {data.map((item, index) => (
-              <div key={index} className={styles.item} onClick={item.onClick}>
+              <div
+                key={index}
+                className={styles.item}
+                onClick={() => handleClick(item.onClick)}
+              >
                 {item.icon}
                 <div className={styles.label}>{item.label}</div>
               </div>

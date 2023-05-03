@@ -19,3 +19,16 @@
 .deleteButtonWrapper {
   margin-top: 40px;
 }
+
+.confirmModalMessage {
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
+  white-space: pre-wrap;
+  word-break: keep-all;
+}
+
+.confirmModalMessage span {
+  color: var(--orange);
+}

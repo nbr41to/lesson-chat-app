@@ -1,7 +1,7 @@
 import { getCurrentUser } from '@/firebase/authentication';
 import { app } from '@/firebase/config';
 import { uploadAvatarFile } from '@/firebase/storage';
-import { User, UserUpdateParams } from '@/models/types';
+import { User, UserBase, UserUpdateParams } from '@/models/types';
 import {
   getFirestore,
   collection,
@@ -12,6 +12,7 @@ import {
   where,
   query,
   updateDoc,
+  arrayUnion,
 } from 'firebase/firestore/lite';
 import { nanoid } from 'nanoid';
 
@@ -40,7 +41,7 @@ export const createUser = async (params: {
   }
 };
 
-/* IDからユーザ情報を取得 */
+/* 自分のユーザ情報を取得 */
 export const getMe = async () => {
   const currentUser = getCurrentUser();
   if (!currentUser) throw new Error('Not logged in');
@@ -57,18 +58,13 @@ export const getMyFriends = async () => {
   const currentUser = getCurrentUser();
   if (!currentUser) throw new Error('Not logged in');
 
-  try {
-    const q = query(
-      collection(db, 'users'),
-      where('friendIds', 'array-contains', currentUser.uid),
-    );
+  const q = query(
+    collection(db, 'users'),
+    where('friendIds', 'array-contains', currentUser.uid),
+  );
+  const querySnapshot = await getDocs(q);
 
-    const querySnapshot = await getDocs(q);
-
-    return querySnapshot.docs.map((doc) => doc.data() as User);
-  } catch (error) {
-    console.error('Error getUser: ', error);
-  }
+  return querySnapshot.docs.map((doc) => doc.data() as User);
 };
 
 /* ユーザ情報の更新 */
@@ -102,4 +98,44 @@ export const updateUser = async (params: UserUpdateParams) => {
   } catch (error) {
     console.error('Error updateUser: ', error);
   }
+};
+
+/* Public IDからユーザを取得 */
+export const getUserByPublicId = async (publicId: string) => {
+  const currentUser = getCurrentUser();
+  if (!currentUser) throw new Error('Not logged in');
+
+  const q = query(collection(db, 'users'), where('publicId', '==', publicId));
+  const querySnapshot = await getDocs(q);
+  if (querySnapshot.docs.length === 0) return null;
+
+  return querySnapshot.docs[0].data() as UserBase;
+};
+
+/* IDからユーザを取得 */
+export const getUserById = async (userId: string) => {
+  const currentUser = getCurrentUser();
+  if (!currentUser) throw new Error('Not logged in');
+
+  const docRef = await getDoc(doc(db, 'users', userId));
+
+  return docRef.data() as UserBase;
+};
+
+/* フレンド追加 */
+export const addFriend = async (friendId: string) => {
+  const currentUser = getCurrentUser();
+  if (!currentUser) throw new Error('Not logged in');
+
+  /* 自分のデータの更新 */
+  const meDocRef = doc(db, 'users', currentUser.uid);
+  await updateDoc(meDocRef, {
+    friendIds: arrayUnion(friendId),
+  });
+
+  /* 相手のデータの更新 */
+  const friendDocRef = doc(db, 'users', friendId);
+  await updateDoc(friendDocRef, {
+    friendIds: arrayUnion(friendId),
+  });
 };

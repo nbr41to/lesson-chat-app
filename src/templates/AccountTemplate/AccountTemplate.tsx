@@ -9,27 +9,31 @@ import { FriendItem } from '@/components/FriendItem';
 import { IconButton } from '@/components/IconButton';
 import { Drawer } from '@/components/Drawer';
 import { AccountEditForm } from '@/components/AccountEditForm';
+import { SearchFriendForm } from '@/components/SearchFriendForm';
 
 type Props = {
   user: User;
   friends: User[];
   onUpdate: (params: UserUpdateParams) => Promise<void>;
+  onSearchFriend: (friendId: string) => Promise<void>;
 };
 
-export const AccountTemplate: FC<Props> = ({ user, friends, onUpdate }) => {
+export const AccountTemplate: FC<Props> = ({
+  user,
+  friends,
+  onUpdate,
+  onSearchFriend,
+}) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
   const handleCopyPublicId = () => {
     navigator.clipboard.writeText(user.publicId);
   };
 
   const handleUpdate = async (params: UserUpdateParams) => {
-    try {
-      await onUpdate(params);
-      setIsEditing(false);
-    } catch (error) {
-      console.log(error);
-    }
+    await onUpdate(params);
+    setIsEditing(false);
   };
 
   return (
@@ -61,7 +65,7 @@ export const AccountTemplate: FC<Props> = ({ user, friends, onUpdate }) => {
           size='large'
           label='フレンド追加'
           leftIcon={<UserPlusBlackIcon />}
-          onClick={() => {}}
+          onClick={() => setIsSearching(true)}
         />
 
         <div className={styles.friends}>
@@ -89,6 +93,16 @@ export const AccountTemplate: FC<Props> = ({ user, friends, onUpdate }) => {
           avatarUrl={user.avatarUrl}
           onSubmit={handleUpdate}
           onCancel={() => setIsEditing(false)}
+        />
+      </Drawer>
+      <Drawer
+        title='フレンド検索'
+        isOpen={isSearching}
+        onClose={() => setIsSearching(false)}
+      >
+        <SearchFriendForm
+          onSubmit={onSearchFriend}
+          onCancel={() => setIsSearching(false)}
         />
       </Drawer>
     </>

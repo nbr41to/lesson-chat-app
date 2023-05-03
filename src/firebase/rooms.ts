@@ -2,7 +2,14 @@ import { getCurrentUser } from '@/firebase/authentication';
 import { app } from '@/firebase/config';
 import { getLatestMessage } from '@/firebase/messages';
 import { uploadRoomThumbnailFile } from '@/firebase/storage';
-import { Room, RoomBase, RoomListItem, User } from '@/models/types';
+import {
+  Room,
+  RoomBase,
+  RoomCreateParams,
+  RoomListItem,
+  RoomUpdateParams,
+  User,
+} from '@/models/types';
 import {
   getFirestore,
   collection,
@@ -12,11 +19,14 @@ import {
   doc,
   setDoc,
   where,
+  updateDoc,
+  deleteDoc,
 } from 'firebase/firestore/lite';
 import { nanoid } from 'nanoid';
 
 const db = getFirestore(app);
 
+/* 自分が参加しているルーム一覧を取得 */
 export const getRooms = async () => {
   const currentUser = getCurrentUser();
   if (!currentUser) throw new Error('Not logged in');
@@ -39,7 +49,11 @@ export const getRooms = async () => {
   return roomsWithLatestMessage;
 };
 
+/* IDからルームの情報を取得 */
 export const getRoom = async (roomId: string) => {
+  const currentUser = getCurrentUser();
+  if (!currentUser) throw new Error('Not logged in');
+
   const roomRef = await getDoc(doc(db, 'rooms', roomId));
   const room = roomRef.data();
 
@@ -54,11 +68,8 @@ export const getRoom = async (roomId: string) => {
   return { ...room, users } as Room;
 };
 
-export const createRoom = async (params: {
-  name: string;
-  file: File;
-  userIds: string[];
-}) => {
+/* ルームを作成 */
+export const createRoom = async (params: RoomCreateParams) => {
   const currentUser = getCurrentUser();
   if (!currentUser) throw new Error('Not logged in');
   const docRef = doc(collection(db, 'rooms'));
@@ -78,7 +89,26 @@ export const createRoom = async (params: {
   return docRef.id;
 };
 
-// ルーム名変更
-// ルームにメンバーを追加
-// ルームから退室
-// ルームの削除
+/**
+ * ルームの情報の更新
+ * ルーム名の変更、メンバーの追加・削除
+ */
+export const updateRoom = async (params: RoomUpdateParams) => {
+  const currentUser = getCurrentUser();
+  if (!currentUser) throw new Error('Not logged in');
+
+  const docRef = doc(db, 'rooms', params.roomId);
+  await updateDoc(docRef, {
+    name: params.name,
+    userIds: params.userIds,
+  });
+};
+
+/* ルームの削除 */
+export const deleteRoom = async (roomId: string) => {
+  const currentUser = getCurrentUser();
+  if (!currentUser) throw new Error('Not logged in');
+
+  const docRef = doc(db, 'rooms', roomId);
+  await deleteDoc(docRef);
+};

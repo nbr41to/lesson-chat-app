@@ -6,7 +6,7 @@ const meta: Meta<typeof Input> = {
   component: Input,
   tags: ['autodocs'],
   args: {
-    label: 'グループ名',
+    label: 'ルーム名',
     placeholder: 'ここに入力',
   },
 };

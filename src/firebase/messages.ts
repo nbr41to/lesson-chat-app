@@ -15,18 +15,6 @@ import {
 
 const db = getFirestore(app);
 
-/**
- * roomIdからMessagesを取得
- * （最終的には未使用）
- */
-export const getMessages = async (roomId: string) => {
-  const q = query(collection(db, 'messages'), where('roomId', '==', roomId));
-
-  const querySnapshot = await getDocs(q);
-
-  return querySnapshot.docs.map((doc) => doc.data() as Message);
-};
-
 /* 新規Messagesを追加 */
 export const addMessage = async (params: {
   roomId: string;
@@ -51,6 +39,9 @@ export const addMessage = async (params: {
 
 /* roomIdから最新のMessageを取得 */
 export const getLatestMessage = async (roomId: string) => {
+  const currentUser = getCurrentUser();
+  if (!currentUser) throw new Error('Not logged in');
+
   const q = query(
     collection(db, 'messages'),
     where('roomId', '==', roomId),

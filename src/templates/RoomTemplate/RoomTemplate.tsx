@@ -40,7 +40,7 @@ export const RoomTemplate: FC<Props> = ({
           },
           {
             icon: <PencilIcon />,
-            label: 'グループ編集',
+            label: 'ルーム編集',
             onClick: () => router.push(`/rooms/${room.id}/setting`),
           },
         ]}

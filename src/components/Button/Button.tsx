@@ -3,6 +3,7 @@ import styles from './Button.module.css';
 
 type Props = {
   label: string;
+  disabled?: boolean;
   onClick: () => void;
   variant?: 'primary' | 'secondary';
   size?: 'small' | 'medium' | 'large';
@@ -10,9 +11,10 @@ type Props = {
 };
 
 export const Button: FC<Props> = ({
-  variant = 'primary',
   label,
+  disabled = false,
   onClick,
+  variant = 'primary',
   size = 'large',
   leftIcon,
 }) => {
@@ -23,6 +25,7 @@ export const Button: FC<Props> = ({
   return (
     <button
       className={`${styles.button} ${variantStyles} ${sizeStyles}`}
+      disabled={disabled}
       onClick={onClick}
     >
       {leftIcon && leftIcon}
