@@ -7,7 +7,7 @@ import { RoomItem } from '@/components/RoomItem';
 import {
   ChatCircleIcon,
   PlusCircleIcon,
-  UserPlusIcon,
+  UserPlusWhiteIcon,
 } from '@/components/icons';
 import { PulldownMenu } from '@/components/PulldownMenu';
 
@@ -37,7 +37,7 @@ export const RoomsTemplate: FC<Props> = ({ rooms, onCreateRoom }) => {
               onClick: onCreateRoom,
             },
             {
-              icon: <UserPlusIcon />,
+              icon: <UserPlusWhiteIcon />,
               label: 'フレンド追加',
               onClick: () => {},
             },

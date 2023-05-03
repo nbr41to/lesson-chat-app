@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import styles from './Button.module.css';
 
 type Props = {
@@ -6,6 +6,7 @@ type Props = {
   onClick: () => void;
   variant?: 'primary' | 'secondary';
   size?: 'small' | 'medium' | 'large';
+  leftIcon?: ReactNode;
 };
 
 export const Button: FC<Props> = ({
@@ -13,6 +14,7 @@ export const Button: FC<Props> = ({
   label,
   onClick,
   size = 'large',
+  leftIcon,
 }) => {
   const variantStyles =
     variant === 'primary' ? styles.primary : styles.secondary;
@@ -23,6 +25,7 @@ export const Button: FC<Props> = ({
       className={`${styles.button} ${variantStyles} ${sizeStyles}`}
       onClick={onClick}
     >
+      {leftIcon && leftIcon}
       {label}
     </button>
   );

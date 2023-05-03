@@ -3,6 +3,7 @@ import { Input } from '@/components/Input';
 import { Button } from '@/components/Button';
 import { useRouter } from 'next/router';
 import styles from './LoginTemplate.module.css';
+import { login } from '@/firebase/authentication';
 
 type Props = {};
 
@@ -11,7 +12,12 @@ export const LoginTemplate: FC<Props> = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const login = () => {};
+  const handleLogin = async () => {
+    try {
+      await login(email, password);
+      router.push('/rooms');
+    } catch (error) {}
+  };
 
   return (
     <div className={styles.root}>
@@ -37,7 +43,7 @@ export const LoginTemplate: FC<Props> = () => {
       </div>
 
       <div className={styles.buttonWrapper}>
-        <Button label='ログイン' variant='primary' onClick={login} />
+        <Button label='ログイン' variant='primary' onClick={handleLogin} />
         <div className={styles.stayLoggedIn}>
           <input type='checkbox' />
           <span>ログイン状態を維持する</span>

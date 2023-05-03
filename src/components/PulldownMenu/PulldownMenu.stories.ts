@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { PulldownMenu } from './PulldownMenu';
 import ChatCircle from 'public/chat_circle.svg';
-import UserPlus from 'public/user_plus.svg';
+import UserPlusWhite from 'public/user_plus_white.svg';
 import { createElement } from 'react';
 import { action } from '@storybook/addon-actions';
 import { PlusCircleIcon } from '@/components/icons';
@@ -19,7 +19,7 @@ const meta: Meta<typeof PulldownMenu> = {
         onClick: action('menu_1'),
       },
       {
-        icon: createElement(UserPlus),
+        icon: createElement(UserPlusWhite),
         label: 'フレンド追加',
         onClick: action('menu_2'),
       },

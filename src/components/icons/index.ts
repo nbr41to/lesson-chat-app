@@ -5,13 +5,21 @@ import DotsThreeIcon from 'public/dots_three.svg';
 import PencilIcon from 'public/pencil.svg';
 import PencilLineIcon from 'public/pencil_line.svg';
 import PlusCircleIcon from 'public/plus_circle.svg';
+import PlusIcon from 'public/plus.svg';
 import SearchIcon from 'public/search.svg';
 import SettingIcon from 'public/setting.svg';
-import UserPlusIcon from 'public/user_plus.svg';
+import UserPlusWhiteIcon from 'public/user_plus_white.svg';
+import UserPlusBlackIcon from 'public/user_plus_black.svg';
 import UsersThreeIcon from 'public/users_three.svg';
+import ChatTeardropDotsIcon from 'public/chat_teardrop_dots.svg';
+import ChatTeardropDotsActiveIcon from 'public/chat_teardrop_dots_active.svg';
+import UserCircleIcon from 'public/user_circle.svg';
+import UserCircleActiveIcon from 'public/user_circle_active.svg';
+import SignOutIcon from 'public/sign_out.svg';
 
 export {
   ArrowDownIcon,
+  PlusIcon,
   CautionIcon,
   ChatCircleIcon,
   DotsThreeIcon,
@@ -20,6 +28,12 @@ export {
   PlusCircleIcon,
   SearchIcon,
   SettingIcon,
-  UserPlusIcon,
+  UserPlusWhiteIcon,
   UsersThreeIcon,
+  ChatTeardropDotsIcon,
+  ChatTeardropDotsActiveIcon,
+  UserCircleIcon,
+  UserCircleActiveIcon,
+  SignOutIcon,
+  UserPlusBlackIcon,
 };

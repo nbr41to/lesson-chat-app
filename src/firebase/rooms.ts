@@ -48,3 +48,6 @@ export const createRoom = async (params: CreateRoomParams) => {
 
   return docRef.id;
 };
+
+// ルーム名変更
+// ルームにメンバーを追加

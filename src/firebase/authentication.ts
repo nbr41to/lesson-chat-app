@@ -66,6 +66,5 @@ export const logout = async () => {
 export const getCurrentUser = () => auth.currentUser;
 
 /* 認証状態の監視 */
-export const onAuthStateChange = (callback: (user: User | null) => void) => {
+export const onAuthStateChange = (callback: (user: User | null) => void) =>
   onAuthStateChanged(auth, callback);
-};

@@ -4,7 +4,7 @@ import { Button } from '@/components/Button';
 import { CautionIcon } from '@/components/icons';
 
 type Props = {
-  open: boolean;
+  isOpen: boolean;
   onClose: () => void;
   primaryLabel: string;
   secondaryLabel: string;
@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const ConfirmModal: FC<Props> = ({
-  open,
+  isOpen,
   onClose,
   primaryLabel,
   secondaryLabel,
@@ -24,7 +24,7 @@ export const ConfirmModal: FC<Props> = ({
 }) => {
   return (
     <>
-      {open ? (
+      {isOpen ? (
         <div className={styles.root}>
           {/* Overlay */}
           <div className={styles.overlay} onClick={onClose} />

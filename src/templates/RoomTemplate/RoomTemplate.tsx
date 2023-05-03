@@ -1,10 +1,12 @@
 import { FC, useState } from 'react';
 import { Message, Room } from '@/types';
-import styles from './RoomTemplate.module.css';
 import { ChatBubble } from '@/components/ChatBubble';
 import { MessageInput } from '@/components/MessageInput';
-import { RoomHeader } from '@/components/RoomHeader';
 import { getCurrentUser } from '@/firebase/authentication';
+import { PencilIcon, UsersThreeIcon } from '@/components/icons';
+import { NestedPageHeader } from '@/components/NestedPageHeader';
+import styles from './RoomTemplate.module.css';
+import { useRouter } from 'next/router';
 
 type Props = {
   room: Room;
@@ -17,6 +19,7 @@ export const RoomTemplate: FC<Props> = ({
   messages,
   onCreateMessage,
 }) => {
+  const router = useRouter();
   const [messageText, setMessageText] = useState('');
   const currentUser = getCurrentUser();
 
@@ -27,7 +30,21 @@ export const RoomTemplate: FC<Props> = ({
 
   return (
     <div className={styles.root}>
-      <RoomHeader name={room.name} amount={2} />
+      <NestedPageHeader
+        name={room.name}
+        menuItems={[
+          {
+            icon: <UsersThreeIcon />,
+            label: 'メンバー',
+            onClick: () => router.push(`/rooms/${room.id}/members`),
+          },
+          {
+            icon: <PencilIcon />,
+            label: 'グループ編集',
+            onClick: () => router.push(`/rooms/${room.id}/setting`),
+          },
+        ]}
+      />
 
       <div className={styles.pageBody}>
         <div className={styles.messageList}>

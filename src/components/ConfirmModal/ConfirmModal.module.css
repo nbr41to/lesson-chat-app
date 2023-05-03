@@ -1,5 +1,5 @@
 .root {
-  position: relative;
+  position: fixed;
 }
 .overlay {
   position: fixed;

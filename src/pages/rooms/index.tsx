@@ -1,10 +1,13 @@
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Room } from '@/types';
 import { createRoom, getRooms } from '@/firebase/rooms';
 import { RoomsTemplate } from '@/templates/RoomsTemplate';
+import { AuthContext } from '@/context/auth';
 
 export default function Rooms() {
+  const user = useContext(AuthContext);
+  console.log(user);
   const [rooms, setRooms] = useState<Room[]>([]);
 
   useEffect(() => {

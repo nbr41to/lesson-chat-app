@@ -1,0 +1,10 @@
+.root {
+  position: fixed;
+  bottom: 0;
+  width: 375px;
+  height: 54px;
+  background-color: var(--white);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

@@ -1,10 +1,12 @@
 import { app } from '@/firebase/config';
+import { User } from '@/types';
 import {
   getFirestore,
   collection,
   getDocs,
   setDoc,
   doc,
+  getDoc,
 } from 'firebase/firestore/lite';
 import { nanoid } from 'nanoid';
 
@@ -30,5 +32,14 @@ export const createUser = async (params: {
     });
   } catch (error) {
     console.error('Error createUser: ', error);
+  }
+};
+
+export const getUser = async (id: string) => {
+  try {
+    const docRef = await getDoc(doc(db, 'users', id));
+    return docRef.data() as User;
+  } catch (error) {
+    console.error('Error getUser: ', error);
   }
 };
