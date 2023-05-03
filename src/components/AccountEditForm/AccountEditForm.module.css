@@ -1,0 +1,18 @@
+.root {
+  background-color: var(--white);
+  min-height: 100vh;
+  padding: 40px 16px;
+}
+
+.icon {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.submitButtonWrapper {
+  margin-top: 60px;
+}
+
+.deleteButtonWrapper {
+  margin-top: 40px;
+}

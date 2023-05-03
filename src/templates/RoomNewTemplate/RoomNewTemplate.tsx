@@ -39,7 +39,7 @@ export const RoomNewTemplate: FC<Props> = () => {
 
   return (
     <div className={styles.root}>
-      <NestedPageHeader name='ルーム作成' />
+      <NestedPageHeader title='ルーム作成' />
 
       <div className={styles.pageBody}>
         <div className={styles.icon}>

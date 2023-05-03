@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from 'react';
-import { Room } from '@/models/types';
+import { FC, useState } from 'react';
+import { RoomBase } from '@/models/types';
 
 import { NestedPageHeader } from '@/components/NestedPageHeader';
 import styles from './RoomSettingTemplate.module.css';
@@ -8,19 +8,15 @@ import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 
 type Props = {
-  room: Room;
+  room: RoomBase;
 };
 
 export const RoomSettingTemplate: FC<Props> = ({ room }) => {
-  const [name, setName] = useState<string>('');
-
-  useEffect(() => {
-    setName(room.name);
-  }, [room.name]);
+  const [name, setName] = useState(room.name);
 
   return (
     <div className={styles.root}>
-      <NestedPageHeader name='グループ編集' />
+      <NestedPageHeader title='グループ編集' />
 
       <div className={styles.pageBody}>
         <div className={styles.icon}>

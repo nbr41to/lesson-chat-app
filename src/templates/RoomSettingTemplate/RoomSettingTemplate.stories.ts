@@ -8,11 +8,11 @@ const meta: Meta<typeof RoomSettingTemplate> = {
   args: {
     room: {
       id: 'room-id',
+      publicId: 'public-id',
       ownerId: 'owner-id',
       thumbnailUrl: './avatar_1.png',
       name: 'さやか',
       userIds: ['user-id'],
-      users: [],
     },
   },
 };

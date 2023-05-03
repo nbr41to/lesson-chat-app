@@ -31,7 +31,7 @@ export const RoomTemplate: FC<Props> = ({
   return (
     <div className={styles.root}>
       <NestedPageHeader
-        name={room.name}
+        title={room.name}
         menuItems={[
           {
             icon: <UsersThreeIcon />,

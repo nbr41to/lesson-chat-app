@@ -6,15 +6,16 @@ import { useRouter } from 'next/router';
 import styles from './NestedPageHeader.module.css';
 
 type Props = {
-  name: string;
+  title: string;
   menuItems?: {
     icon: ReactNode;
     label: string;
     onClick: () => void;
   }[];
+  onBack?: () => void;
 };
 
-export const NestedPageHeader: FC<Props> = ({ name, menuItems }) => {
+export const NestedPageHeader: FC<Props> = ({ title, menuItems, onBack }) => {
   const router = useRouter();
 
   return (
@@ -23,9 +24,9 @@ export const NestedPageHeader: FC<Props> = ({ name, menuItems }) => {
         icon={<ArrowDownIcon />}
         width={18}
         height={18}
-        onClick={router.back}
+        onClick={onBack ? onBack : router.back}
       />
-      <div className={styles.name}>{name}</div>
+      <div className={styles.title}>{title}</div>
       <div className={styles.menuButton}>
         {menuItems && (
           <PulldownMenu buttonIcon={<DotsThreeIcon />} data={menuItems} />

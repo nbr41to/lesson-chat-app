@@ -47,13 +47,15 @@ export const RoomsTemplate: FC<Props> = ({ rooms }) => {
       </div>
 
       <div className={styles.roomList}>
-        {rooms.map((room) => (
-          <RoomItem
-            key={room.id}
-            room={room}
-            onClick={() => router.push(`/rooms/${room.id}`)}
-          />
-        ))}
+        {rooms
+          .filter((room) => room.name.includes(searchText))
+          .map((room) => (
+            <RoomItem
+              key={room.id}
+              room={room}
+              onClick={() => router.push(`/rooms/${room.id}`)}
+            />
+          ))}
       </div>
     </div>
   );

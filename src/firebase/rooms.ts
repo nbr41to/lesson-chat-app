@@ -8,16 +8,24 @@ import {
   collection,
   getDocs,
   getDoc,
+  query,
   doc,
   setDoc,
+  where,
 } from 'firebase/firestore/lite';
 import { nanoid } from 'nanoid';
 
 const db = getFirestore(app);
 
 export const getRooms = async () => {
-  const roomSnapshot = await getDocs(collection(db, 'rooms'));
+  const currentUser = getCurrentUser();
+  if (!currentUser) throw new Error('Not logged in');
 
+  const q = query(
+    collection(db, 'rooms'),
+    where('userIds', 'array-contains', currentUser.uid),
+  );
+  const roomSnapshot = await getDocs(q);
   const rooms = roomSnapshot.docs.map((doc) => doc.data() as RoomBase);
 
   const roomsWithLatestMessage = (await Promise.all(

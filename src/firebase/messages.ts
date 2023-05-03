@@ -55,7 +55,7 @@ export const getLatestMessage = async (roomId: string) => {
     collection(db, 'messages'),
     where('roomId', '==', roomId),
     orderBy('sendAt', 'desc'),
-    limit(1),
+    limit(3),
   );
 
   const querySnapshot = await getDocs(q);

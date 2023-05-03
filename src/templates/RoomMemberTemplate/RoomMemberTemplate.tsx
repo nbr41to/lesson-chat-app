@@ -15,7 +15,7 @@ type Props = {
 export const RoomMemberTemplate: FC<Props> = ({ room }) => {
   return (
     <div className={styles.root}>
-      <NestedPageHeader name='メンバー' />
+      <NestedPageHeader title='メンバー' />
 
       <div className={styles.pageBody}>
         <div className={styles.userItems}>

@@ -1,29 +1,45 @@
 import Head from 'next/head';
 import { AccountTemplate } from '@/templates/AccountTemplate';
-import { useEffect, useState } from 'react';
-import { User } from '@/models/types';
-import { getCurrentUser } from '@/firebase/authentication';
-import { getUser } from '@/firebase/users';
+import { useContext, useEffect, useState } from 'react';
+import { User, UserUpdateParams } from '@/models/types';
+import { getMe, getMyFriends } from '@/firebase/users';
+import { AuthContext } from '@/context/auth';
+import { updateUser } from '@/firebase/users';
 
 export default function Account() {
   const [user, setUser] = useState<User>();
+  const [friends, setFriends] = useState<User[]>([]);
+  const authContext = useContext(AuthContext);
 
-  const currentUser = getCurrentUser();
-  console.log(currentUser);
   useEffect(() => {
-    if (!currentUser) return;
+    if (!authContext.user) return;
+
     (async () => {
-      const response = await getUser(currentUser.uid);
-      setUser(response);
+      const resMe = await getMe();
+      setUser(resMe);
+      const resFriends = await getMyFriends();
+      setFriends(resFriends || []);
     })();
-  }, [currentUser]);
+  }, [authContext.user]);
+
+  const handleUpdate = async (params: UserUpdateParams) => {
+    await updateUser(params);
+    const resMe = await getMe();
+    setUser(resMe);
+  };
 
   return (
     <>
       <Head>
         <title>Account</title>
       </Head>
-      {user && <AccountTemplate user={user} />}
+      {user && (
+        <AccountTemplate
+          user={user}
+          friends={friends}
+          onUpdate={handleUpdate}
+        />
+      )}
     </>
   );
 }

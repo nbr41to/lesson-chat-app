@@ -1,3 +1,7 @@
+/**
+ * User
+ */
+
 export type UserBase = {
   id: string;
   publicId: string;
@@ -8,6 +12,12 @@ export type UserBase = {
 
 export type User = UserBase & {
   friends: User[]; // firestoreから取得時に差し込む
+};
+
+export type UserUpdateParams = {
+  name: string;
+  publicId: string;
+  avatarImage: File | null;
 };
 
 export type RoomBase = {
@@ -24,7 +34,7 @@ export type RoomListItem = RoomBase & {
 };
 
 export type Room = RoomBase & {
-  users: User[]; // firestoreから取得時に差し込む
+  users: UserBase[]; // firestoreから取得時に差し込む
 };
 
 export type Message = {

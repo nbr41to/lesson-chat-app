@@ -5,7 +5,7 @@ import { ConfirmModal } from './ConfirmModal';
 const meta: Meta<typeof ConfirmModal> = {
   component: ConfirmModal,
   args: {
-    open: true,
+    isOpen: true,
     message: '本当にグループを退会しますか？',
     primaryLabel: '退会する',
     secondaryLabel: 'キャンセル',

@@ -15,13 +15,13 @@ type Story = StoryObj<typeof NestedPageHeader>;
 
 export const Default: Story = {
   args: {
-    name: 'メンバー',
+    title: 'メンバー',
   },
 };
 
 export const InMenu: Story = {
   args: {
-    name: 'メンバー',
+    title: 'メンバー',
     menuItems: [
       {
         icon: createElement(ChatCircleIcon),

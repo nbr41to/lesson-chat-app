@@ -6,8 +6,8 @@ const meta: Meta<typeof FriendItem> = {
   component: FriendItem,
   tags: ['autodocs'],
   args: {
-    thumbnailUrl: './avatar_1.png',
     name: 'さやか',
+    avatarUrl: './avatar_1.png',
   },
 };
 

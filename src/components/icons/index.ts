@@ -16,6 +16,7 @@ import ChatTeardropDotsActiveIcon from 'public/chat_teardrop_dots_active.svg';
 import UserCircleIcon from 'public/user_circle.svg';
 import UserCircleActiveIcon from 'public/user_circle_active.svg';
 import SignOutIcon from 'public/sign_out.svg';
+import CopyIcon from 'public/copy.svg';
 
 export {
   ArrowDownIcon,
@@ -36,4 +37,5 @@ export {
   UserCircleActiveIcon,
   SignOutIcon,
   UserPlusBlackIcon,
+  CopyIcon,
 };

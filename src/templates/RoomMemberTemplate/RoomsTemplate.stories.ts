@@ -8,11 +8,27 @@ const meta: Meta<typeof RoomMemberTemplate> = {
   args: {
     room: {
       id: 'room-id',
+      publicId: 'public-id',
       ownerId: 'owner-id',
       thumbnailUrl: './avatar_1.png',
       name: 'さやか',
       userIds: ['user-id'],
-      users: [],
+      users: [
+        {
+          id: 'user-id-1',
+          publicId: 'public-id-1',
+          name: 'さやか',
+          avatarUrl: './avatar_1.png',
+          friendIds: ['user-id-2'],
+        },
+        {
+          id: 'user-id-2',
+          publicId: 'public-id-2',
+          name: 'ゆうこ',
+          avatarUrl: './avatar_1.png',
+          friendIds: ['user-id-1'],
+        },
+      ],
     },
   },
 };

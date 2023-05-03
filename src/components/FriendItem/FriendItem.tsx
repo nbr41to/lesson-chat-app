@@ -3,14 +3,14 @@ import { Avatar } from '@/components/Avatar';
 import styles from './FriendItem.module.css';
 
 type Props = {
-  thumbnailUrl: string;
+  avatarUrl: string;
   name: string;
 };
 
-export const FriendItem: FC<Props> = ({ thumbnailUrl, name }) => {
+export const FriendItem: FC<Props> = ({ avatarUrl, name }) => {
   return (
     <div className={styles.root}>
-      <Avatar url={thumbnailUrl} />
+      <Avatar url={avatarUrl} />
       <p className={styles.name}>{name}</p>
     </div>
   );

@@ -9,11 +9,12 @@ const meta: Meta<typeof RoomsTemplate> = {
     rooms: [
       {
         id: 'room-id',
+        publicId: 'public-id',
         ownerId: 'owner-id',
         thumbnailUrl: './avatar_1.png',
         name: 'さやか',
         userIds: ['user-id'],
-        users: [],
+        latestMessage: '今日はありがとね！',
       },
     ],
   },
