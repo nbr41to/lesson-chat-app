@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { RoomSettingTemplate } from './RoomSettingTemplate';
+import { RoomEditForm } from './RoomEditForm';
 
-const meta: Meta<typeof RoomSettingTemplate> = {
-  component: RoomSettingTemplate,
+const meta: Meta<typeof RoomEditForm> = {
+  component: RoomEditForm,
   tags: ['autodocs'],
   args: {
     room: {
@@ -18,7 +18,7 @@ const meta: Meta<typeof RoomSettingTemplate> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof RoomSettingTemplate>;
+type Story = StoryObj<typeof RoomEditForm>;
 
 export const Default: Story = {
   args: {},

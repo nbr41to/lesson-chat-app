@@ -50,8 +50,8 @@ export const FooterMenu: FC<Props> = () => {
         onClose={() => setIsConfirmModalOpen(false)}
         primaryLabel='ログアウト'
         secondaryLabel='キャンセル'
-        onPrimary={logout}
-        onSecondary={() => setIsConfirmModalOpen(false)}
+        onClickPrimary={logout}
+        onClickSecondary={() => setIsConfirmModalOpen(false)}
         message='ログアウトしますか？'
       />
     </footer>

@@ -8,8 +8,8 @@ type Props = {
   onClose: () => void;
   primaryLabel: string;
   secondaryLabel: string;
-  onPrimary: () => void;
-  onSecondary: () => void;
+  onClickPrimary: () => void;
+  onClickSecondary: () => void;
   message: string | ReactNode;
 };
 
@@ -18,8 +18,8 @@ export const ConfirmModal: FC<Props> = ({
   onClose,
   primaryLabel,
   secondaryLabel,
-  onPrimary,
-  onSecondary,
+  onClickPrimary,
+  onClickSecondary,
   message,
 }) => {
   return (
@@ -36,13 +36,13 @@ export const ConfirmModal: FC<Props> = ({
                 variant='secondary'
                 size='medium'
                 label={primaryLabel}
-                onClick={onPrimary}
+                onClick={onClickPrimary}
               />
               <Button
                 variant='primary'
                 size='medium'
                 label={secondaryLabel}
-                onClick={onSecondary}
+                onClick={onClickSecondary}
               />
             </div>
           </div>

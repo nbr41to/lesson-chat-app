@@ -1,8 +1,12 @@
 .root {
-  height: 54px;
   background-color: var(--orange);
+  padding: 0 16px;
+}
+
+.root a {
+  width: fit-content;
+  height: 54px;
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 0 16px;
 }
