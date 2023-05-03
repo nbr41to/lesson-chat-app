@@ -136,6 +136,6 @@ export const addFriend = async (friendId: string) => {
   /* 相手のデータの更新 */
   const friendDocRef = doc(db, 'users', friendId);
   await updateDoc(friendDocRef, {
-    friendIds: arrayUnion(friendId),
+    friendIds: arrayUnion(currentUser.uid),
   });
 };
