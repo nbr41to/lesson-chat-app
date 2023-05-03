@@ -1,20 +1,18 @@
 import type { FC } from 'react';
-import { Room } from '@/types';
+import { Room } from '@/models/types';
 
 import { NestedPageHeader } from '@/components/NestedPageHeader';
-import styles from './RoomMemberTemplate.module.css';
 import { Avatar } from '@/components/Avatar';
 import { PlusIcon } from '@/components/icons';
 import { Button } from '@/components/Button';
 import { IconButton } from '@/components/IconButton';
+import styles from './RoomMemberTemplate.module.css';
 
 type Props = {
   room: Room;
 };
 
 export const RoomMemberTemplate: FC<Props> = ({ room }) => {
-  console.log(room);
-
   return (
     <div className={styles.root}>
       <NestedPageHeader name='メンバー' />

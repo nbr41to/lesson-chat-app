@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Room } from '@/types';
+import { Room } from '@/models/types';
 
 import { NestedPageHeader } from '@/components/NestedPageHeader';
 import styles from './RoomSettingTemplate.module.css';

@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Room } from '@/types';
+import { RoomListItem } from '@/models/types';
 import { SearchInput } from '@/components/SearchInput';
 import styles from './RoomsTemplate.module.css';
 import { RoomItem } from '@/components/RoomItem';
@@ -12,11 +12,10 @@ import {
 import { PulldownMenu } from '@/components/PulldownMenu';
 
 type Props = {
-  rooms: Room[];
-  onCreateRoom: () => void;
+  rooms: RoomListItem[];
 };
 
-export const RoomsTemplate: FC<Props> = ({ rooms, onCreateRoom }) => {
+export const RoomsTemplate: FC<Props> = ({ rooms }) => {
   const router = useRouter();
   const [searchText, setSearchText] = useState('');
 
@@ -34,7 +33,7 @@ export const RoomsTemplate: FC<Props> = ({ rooms, onCreateRoom }) => {
             {
               icon: <ChatCircleIcon />,
               label: 'ルーム作成',
-              onClick: onCreateRoom,
+              onClick: () => router.push('/rooms/new'),
             },
             {
               icon: <UserPlusWhiteIcon />,
@@ -52,7 +51,6 @@ export const RoomsTemplate: FC<Props> = ({ rooms, onCreateRoom }) => {
           <RoomItem
             key={room.id}
             room={room}
-            latestMessage='最新のメッセージ'
             onClick={() => router.push(`/rooms/${room.id}`)}
           />
         ))}

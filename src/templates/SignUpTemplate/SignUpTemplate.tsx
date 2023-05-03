@@ -13,8 +13,11 @@ export const SignUpTemplate: FC<Props> = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignUp = () => {
-    signUp({ name, email, password });
+  const handleSignUp = async () => {
+    try {
+      await signUp({ name, email, password });
+      router.push('/account');
+    } catch (error) {}
   };
 
   return (

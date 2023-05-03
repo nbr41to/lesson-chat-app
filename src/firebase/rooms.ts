@@ -1,6 +1,8 @@
 import { getCurrentUser } from '@/firebase/authentication';
 import { app } from '@/firebase/config';
-import { CreateRoomParams, Room, User } from '@/types';
+import { getLatestMessage } from '@/firebase/messages';
+import { uploadRoomThumbnailFile } from '@/firebase/storage';
+import { Room, RoomBase, RoomListItem, User } from '@/models/types';
 import {
   getFirestore,
   collection,
@@ -9,13 +11,24 @@ import {
   doc,
   setDoc,
 } from 'firebase/firestore/lite';
+import { nanoid } from 'nanoid';
 
 const db = getFirestore(app);
 
 export const getRooms = async () => {
   const roomSnapshot = await getDocs(collection(db, 'rooms'));
 
-  return roomSnapshot.docs.map((doc) => doc.data() as Room);
+  const rooms = roomSnapshot.docs.map((doc) => doc.data() as RoomBase);
+
+  const roomsWithLatestMessage = (await Promise.all(
+    rooms.map(async (room) => {
+      const latestMessage = await getLatestMessage(room.id);
+
+      return { ...room, latestMessage };
+    }),
+  )) as RoomListItem[];
+
+  return roomsWithLatestMessage;
 };
 
 export const getRoom = async (roomId: string) => {
@@ -33,16 +46,24 @@ export const getRoom = async (roomId: string) => {
   return { ...room, users } as Room;
 };
 
-export const createRoom = async (params: CreateRoomParams) => {
+export const createRoom = async (params: {
+  name: string;
+  file: File;
+  userIds: string[];
+}) => {
   const currentUser = getCurrentUser();
   if (!currentUser) throw new Error('Not logged in');
   const docRef = doc(collection(db, 'rooms'));
 
+  const thumbnailUrl = await uploadRoomThumbnailFile(params.file, docRef.id);
+
+  const publicId = nanoid(6);
   await setDoc(docRef, {
     id: docRef.id,
+    publicId,
     name: params.name,
     ownerId: currentUser.uid,
-    thumbnailUrl: '',
+    thumbnailUrl,
     userIds: [currentUser.uid, ...params.userIds],
   });
 
@@ -51,3 +72,5 @@ export const createRoom = async (params: CreateRoomParams) => {
 
 // ルーム名変更
 // ルームにメンバーを追加
+// ルームから退室
+// ルームの削除

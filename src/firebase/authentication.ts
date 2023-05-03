@@ -62,7 +62,7 @@ export const logout = async () => {
   }
 };
 
-/* 認証状態の取得 */
+/* 認証ユーザの取得 */
 export const getCurrentUser = () => auth.currentUser;
 
 /* 認証状態の監視 */

@@ -1,5 +1,5 @@
 import { app } from '@/firebase/config';
-import { Message } from '@/types';
+import { Message } from '@/models/types';
 import {
   collection,
   getFirestore,

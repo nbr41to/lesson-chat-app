@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Message, Room } from '@/types';
+import { Message, Room } from '@/models/types';
 import { ChatBubble } from '@/components/ChatBubble';
 import { MessageInput } from '@/components/MessageInput';
 import { getCurrentUser } from '@/firebase/authentication';

@@ -1,19 +1,24 @@
 import { getCurrentUser } from '@/firebase/authentication';
 import { app } from '@/firebase/config';
-import { Message } from '@/types';
+import { Message } from '@/models/types';
 import {
   getFirestore,
   collection,
   getDocs,
   query,
+  orderBy,
   where,
   doc,
   setDoc,
+  limit,
 } from 'firebase/firestore/lite';
 
 const db = getFirestore(app);
 
-/* roomIdからMessagesを取得 */
+/**
+ * roomIdからMessagesを取得
+ * （最終的には未使用）
+ */
 export const getMessages = async (roomId: string) => {
   const q = query(collection(db, 'messages'), where('roomId', '==', roomId));
 
@@ -42,4 +47,20 @@ export const addMessage = async (params: {
   } catch (error) {
     console.error('Error addMessage: ', error);
   }
+};
+
+/* roomIdから最新のMessageを取得 */
+export const getLatestMessage = async (roomId: string) => {
+  const q = query(
+    collection(db, 'messages'),
+    where('roomId', '==', roomId),
+    orderBy('sendAt', 'desc'),
+    limit(1),
+  );
+
+  const querySnapshot = await getDocs(q);
+
+  if (querySnapshot.docs.length === 0) return '';
+
+  return (querySnapshot.docs[0].data() as Message).content;
 };

@@ -1,5 +1,5 @@
 import { app } from '@/firebase/config';
-import { User } from '@/types';
+import { User } from '@/models/types';
 import {
   getFirestore,
   collection,
@@ -35,6 +35,7 @@ export const createUser = async (params: {
   }
 };
 
+/* IDからユーザ情報を取得 */
 export const getUser = async (id: string) => {
   try {
     const docRef = await getDoc(doc(db, 'users', id));

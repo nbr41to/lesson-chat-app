@@ -4,7 +4,9 @@ import styles from './AccountTemplate.module.css';
 import { SettingIcon, UserPlusBlackIcon } from '@/components/icons';
 import { Avatar } from '@/components/Avatar';
 import { Button } from '@/components/Button';
-import { User } from '@/types';
+import { User } from '@/models/types';
+import { FriendItem } from '@/components/FriendItem';
+import { IconButton } from '@/components/IconButton';
 
 type Props = {
   user: User;
@@ -16,7 +18,7 @@ export const AccountTemplate: FC<Props> = ({ user }) => {
     <div className={styles.root}>
       <div className={styles.pageHeader}>
         <h2>プロフィール</h2>
-        <SettingIcon />
+        <IconButton icon={<SettingIcon />} onClick={() => {}} />
       </div>
 
       <div className={styles.profileWrapper}>
@@ -36,8 +38,22 @@ export const AccountTemplate: FC<Props> = ({ user }) => {
         onClick={() => {}}
       />
 
-      <div>
-        <h2>フレンド(5)</h2>
+      <div className={styles.friends}>
+        <h2>フレンド(3)</h2>
+        <div className={styles.friendsItems}>
+          <FriendItem
+            name='ちゃんちゃら'
+            thumbnailUrl='https://picsum.photos/200'
+          />
+          <FriendItem
+            name='ちゃんちゃら'
+            thumbnailUrl='https://picsum.photos/200'
+          />
+          <FriendItem
+            name='ちゃんちゃら'
+            thumbnailUrl='https://picsum.photos/200'
+          />
+        </div>
       </div>
     </div>
   );

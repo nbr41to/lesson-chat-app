@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import { Room } from '@/types';
+import { Room } from '@/models/types';
 import { getRoom } from '@/firebase/rooms';
 import { RoomMemberTemplate } from '@/templates/RoomMemberTemplate';
 import { useRouter } from 'next/router';
 
-export default function Rooms() {
+export default function RoomMember() {
   const router = useRouter();
   const roomId = router.query.roomId as string;
 

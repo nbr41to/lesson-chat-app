@@ -2,7 +2,7 @@ import { addMessage } from '@/firebase/messages';
 import { onSnapshotMessages } from '@/firebase/onSnapshotMessages';
 import { getRoom } from '@/firebase/rooms';
 import { RoomTemplate } from '@/templates/RoomTemplate';
-import { Message, Room } from '@/types';
+import { Message, Room } from '@/models/types';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';

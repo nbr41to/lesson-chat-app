@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { AccountTemplate } from '@/templates/AccountTemplate';
 import { useEffect, useState } from 'react';
-import { User } from '@/types';
+import { User } from '@/models/types';
 import { getCurrentUser } from '@/firebase/authentication';
 import { getUser } from '@/firebase/users';
 

@@ -8,13 +8,13 @@ const meta: Meta<typeof RoomItem> = {
   args: {
     room: {
       id: 'room-id',
+      publicId: 'public-id',
       ownerId: 'owner-id',
       thumbnailUrl: './avatar_1.png',
       name: 'さやか',
       userIds: ['user-id'],
-      users: [],
+      latestMessage: 'カフェいるけど来れる？',
     },
-    latestMessage: 'カフェいるけど来れる？',
   },
 };
 
@@ -26,7 +26,15 @@ export const Default: Story = {
 };
 export const LongLatestMessage: Story = {
   args: {
-    latestMessage:
-      'カフェいるけど来れる？カフェいるけど来れる？カフェいるけど来れる？カフェいるけど来れる？カフェいるけど来れる？',
+    room: {
+      id: 'room-id',
+      publicId: 'public-id',
+      ownerId: 'owner-id',
+      thumbnailUrl: './avatar_1.png',
+      name: 'さやか',
+      userIds: ['user-id'],
+      latestMessage:
+        'カフェいるけど来れる？カフェいるけど来れる？カフェいるけど来れる？カフェいるけど来れる？カフェいるけど来れる？',
+    },
   },
 };
