@@ -32,8 +32,8 @@ export const RoomsTemplate: FC<Props> = ({
   const [isSearching, setIsSearching] = useState(false);
   const [searchText, setSearchText] = useState('');
 
-  const handleOnCreate = async (params: RoomCreateParams) => {
-    await onCreateRoom(params);
+  const handleOnCreate = (params: RoomCreateParams) => {
+    onCreateRoom(params);
     setIsCreating(false);
   };
 

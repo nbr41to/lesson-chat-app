@@ -7,13 +7,19 @@ import { Button } from '@/components/Button';
 import { IconButton } from '@/components/IconButton';
 import styles from './RoomMembers.module.css';
 import { ConfirmModal } from '@/components/ConfirmModal';
+import { baseUrl } from '@/models/constants';
 
 type Props = {
   room: Room;
+  onLeave: () => void;
 };
 
-export const RoomMembers: FC<Props> = ({ room }) => {
+export const RoomMembers: FC<Props> = ({ room, onLeave }) => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState<boolean>(false);
+  const roomUrl = `${baseUrl}/join-room/${room.id}`;
+  const copyRoomLink = () => {
+    navigator.clipboard.writeText(roomUrl);
+  };
 
   return (
     <>
@@ -31,8 +37,8 @@ export const RoomMembers: FC<Props> = ({ room }) => {
         </div>
 
         <div className={styles.copyLink}>
-          <p>ルームのリンク：{'/' + room.publicId}</p>
-          <Button label='ルームのリンクをコピー' onClick={() => {}} />
+          <p>ルームのリンク：{roomUrl}</p>
+          <Button label='ルームのリンクをコピー' onClick={copyRoomLink} />
         </div>
         <Button
           variant='secondary'
@@ -44,7 +50,7 @@ export const RoomMembers: FC<Props> = ({ room }) => {
         isOpen={isConfirmModalOpen}
         message='本当にルームを退室しますか？'
         primaryLabel='退室'
-        onClickPrimary={() => {}}
+        onClickPrimary={onLeave}
         secondaryLabel='キャンセル'
         onClickSecondary={() => setIsConfirmModalOpen(false)}
         onClose={() => setIsConfirmModalOpen(false)}

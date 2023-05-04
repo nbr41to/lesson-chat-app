@@ -11,7 +11,7 @@ type Props = {
   name: string;
   publicId: string;
   avatarUrl: string;
-  onSubmit: (params: UserUpdateParams) => Promise<void>;
+  onSubmit: (params: UserUpdateParams) => void;
   onCancel: () => void;
 };
 
@@ -27,7 +27,7 @@ export const AccountEditForm: FC<Props> = ({
   const [file, setFile] = useState<File | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleOnChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setFile(e.target.files[0]);
     } else {
@@ -35,14 +35,13 @@ export const AccountEditForm: FC<Props> = ({
     }
   };
 
-  const handleSubmit = async () => {
+  const handleOnSubmit = async () => {
     if (!file && !name && !publicId) return;
-    await onSubmit({
+    onSubmit({
       name,
       publicId,
       avatarImage: file,
     });
-
     setName(initialName);
     setPublicId(initialPublicId);
     setFile(null);
@@ -70,7 +69,7 @@ export const AccountEditForm: FC<Props> = ({
           type='file'
           accept='image/*'
           ref={inputRef}
-          onChange={handleFileChange}
+          onChange={handleOnChangeFile}
           hidden
         />
       </div>
@@ -86,7 +85,7 @@ export const AccountEditForm: FC<Props> = ({
         onChange={(e) => setPublicId(e.target.value)}
       />
       <div className={styles.submitButtonWrapper}>
-        <Button label='保存' onClick={handleSubmit} />
+        <Button label='保存' onClick={handleOnSubmit} />
       </div>
       <div className={styles.deleteButtonWrapper}>
         <Button variant='secondary' label='キャンセル' onClick={onCancel} />

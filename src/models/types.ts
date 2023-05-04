@@ -44,10 +44,12 @@ export type RoomCreateParams = {
   file: File; // サムネイルの画像ファイル
   userIds: string[];
 };
+
 export type RoomUpdateParams = {
   roomId: string;
   name: string;
   userIds: string[];
+  thumbnailImage: File | null;
 };
 
 /**

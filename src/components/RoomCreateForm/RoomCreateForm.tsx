@@ -11,7 +11,7 @@ import styles from './RoomCreateForm.module.css';
 
 type Props = {
   friends: User[];
-  onSubmit: (params: RoomCreateParams) => Promise<void>;
+  onSubmit: (params: RoomCreateParams) => void;
 };
 
 export const RoomCreateForm: FC<Props> = ({ friends, onSubmit }) => {
@@ -20,7 +20,7 @@ export const RoomCreateForm: FC<Props> = ({ friends, onSubmit }) => {
   const [file, setFile] = useState<File | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleOnChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setFile(e.target.files[0]);
     } else {
@@ -28,13 +28,13 @@ export const RoomCreateForm: FC<Props> = ({ friends, onSubmit }) => {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleOnSubmit = async () => {
     if (!name || !file) return;
 
-    await onSubmit({
+    onSubmit({
       name,
       file,
-      userIds: ['paPVFUZHApbygZz2VW7mm2FprQl2'], // mockとして初期値を設定
+      userIds: ['paPVFUZHApbygZz2VW7mm2FprQl2'], // mockとしてテストユーザを追加
     });
     setName('');
     setFile(null);
@@ -64,7 +64,7 @@ export const RoomCreateForm: FC<Props> = ({ friends, onSubmit }) => {
           type='file'
           accept='image/*'
           ref={inputRef}
-          onChange={handleFileChange}
+          onChange={handleOnChangeFile}
           hidden
         />
       </div>
@@ -75,7 +75,7 @@ export const RoomCreateForm: FC<Props> = ({ friends, onSubmit }) => {
         onChange={(e) => setName(e.target.value)}
       />
       <div className={styles.submitButtonWrapper}>
-        <Button label='作成' onClick={handleSubmit} />
+        <Button label='作成' onClick={handleOnSubmit} />
       </div>
       <div className={styles.deleteButtonWrapper}>
         <Button variant='secondary' label='キャンセル' onClick={router.back} />

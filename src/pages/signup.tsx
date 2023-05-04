@@ -6,7 +6,7 @@ export default function SignUp() {
   return (
     <>
       <Head>
-        <title>SignUp</title>
+        <title>登録 | トープ</title>
       </Head>
       <SignUpTemplate />
     </>

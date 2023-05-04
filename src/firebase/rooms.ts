@@ -91,17 +91,31 @@ export const createRoom = async (params: RoomCreateParams) => {
 
 /**
  * ルームの情報の更新
- * ルーム名の変更、メンバーの追加・削除
+ * ルーム情報の変更、メンバーの追加・削除
  */
 export const updateRoom = async (params: RoomUpdateParams) => {
   const currentUser = getCurrentUser();
   if (!currentUser) throw new Error('Not logged in');
 
-  const docRef = doc(db, 'rooms', params.roomId);
-  await updateDoc(docRef, {
+  const body = {
     name: params.name,
     userIds: params.userIds,
-  });
+    thumbnailUrl: '',
+  };
+  if (params.thumbnailImage) {
+    body.thumbnailUrl = await uploadRoomThumbnailFile(
+      params.thumbnailImage,
+      params.roomId,
+    );
+  }
+  const docRef = doc(db, 'rooms', params.roomId);
+  const paramsWithoutUndefined = Object.fromEntries(
+    Object.entries(body).filter(([, v]) => {
+      return v;
+    }),
+  );
+
+  await updateDoc(docRef, paramsWithoutUndefined);
 };
 
 /* ルームの削除 */

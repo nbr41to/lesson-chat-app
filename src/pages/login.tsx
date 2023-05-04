@@ -5,7 +5,7 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>Login</title>
+        <title>ログイン | トープ</title>
       </Head>
       <LoginTemplate />
     </>

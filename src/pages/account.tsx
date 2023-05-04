@@ -18,8 +18,10 @@ export default function Account() {
 
     (async () => {
       try {
+        /* ユーザ情報の取得 */
         const resMe = await getMe();
         setUser(resMe);
+        /* フレンドの情報の取得 */
         const resFriends = await getMyFriends();
         setFriends(resFriends);
       } catch (error) {
@@ -28,9 +30,12 @@ export default function Account() {
     })();
   }, [authContext.user]);
 
-  const handleUpdate = async (params: UserUpdateParams) => {
+  /* ユーザ情報の更新 */
+  const handleOnUpdate = async (params: UserUpdateParams) => {
     try {
       await updateUser(params);
+
+      /* 再取得 */
       const resMe = await getMe();
       setUser(resMe);
     } catch (error) {
@@ -38,7 +43,8 @@ export default function Account() {
     }
   };
 
-  const handleSearchFriend = async (publicId: string) => {
+  /* ユーザの検索 */
+  const handleOnSearchFriend = async (publicId: string) => {
     try {
       const user = await getUserByPublicId(publicId);
       if (!user) return alert('ユーザーが見つかりませんでした');
@@ -52,14 +58,14 @@ export default function Account() {
   return (
     <>
       <Head>
-        <title>Account</title>
+        <title>プロフィール | トープ</title>
       </Head>
       {user && (
         <AccountTemplate
           user={user}
           friends={friends}
-          onUpdate={handleUpdate}
-          onSearchFriend={handleSearchFriend}
+          onUpdate={handleOnUpdate}
+          onSearchFriend={handleOnSearchFriend}
         />
       )}
     </>

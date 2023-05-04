@@ -67,7 +67,7 @@ export const updateUser = async (params: UserUpdateParams) => {
   const body = {
     name: params.name,
     publicId: params.publicId,
-    avatarUrl: '',
+    avatarUrl: 'https://placehold.jp/80x80.png',
   };
   if (params.avatarImage) {
     body.avatarUrl = await uploadAvatarFile(
@@ -78,12 +78,9 @@ export const updateUser = async (params: UserUpdateParams) => {
   const docRef = doc(db, 'users', currentUser.uid);
   const paramsWithoutUndefined = Object.fromEntries(
     Object.entries(body).filter(([, v]) => {
-      console.log(v);
       return v;
     }),
   );
-
-  console.log(paramsWithoutUndefined);
 
   await updateDoc(docRef, paramsWithoutUndefined);
 };

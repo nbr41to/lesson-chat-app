@@ -1,4 +1,4 @@
-import { FC, useId } from 'react';
+import { FC } from 'react';
 import styles from './ChatBubble.module.css';
 import { Avatar } from '@/components/Avatar';
 

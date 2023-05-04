@@ -14,8 +14,8 @@ import { SearchFriendForm } from '@/components/SearchFriendForm';
 type Props = {
   user: User;
   friends: User[];
-  onUpdate: (params: UserUpdateParams) => Promise<void>;
-  onSearchFriend: (friendId: string) => Promise<void>;
+  onUpdate: (params: UserUpdateParams) => void;
+  onSearchFriend: (friendId: string) => void;
 };
 
 export const AccountTemplate: FC<Props> = ({
@@ -27,12 +27,12 @@ export const AccountTemplate: FC<Props> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
 
-  const handleCopyPublicId = () => {
+  const copyPublicId = () => {
     navigator.clipboard.writeText(user.publicId);
   };
 
-  const handleUpdate = async (params: UserUpdateParams) => {
-    await onUpdate(params);
+  const handleOnUpdate = (params: UserUpdateParams) => {
+    onUpdate(params);
     setIsEditing(false);
   };
 
@@ -50,7 +50,7 @@ export const AccountTemplate: FC<Props> = ({
             <div className={styles.name}>{user.name}</div>
             <div className={styles.publicId}>
               <span>ID：{user.publicId}</span>
-              <IconButton icon={<CopyIcon />} onClick={handleCopyPublicId} />
+              <IconButton icon={<CopyIcon />} onClick={copyPublicId} />
             </div>
           </div>
           <Button
@@ -91,7 +91,7 @@ export const AccountTemplate: FC<Props> = ({
           name={user.name}
           publicId={user.publicId}
           avatarUrl={user.avatarUrl}
-          onSubmit={handleUpdate}
+          onSubmit={handleOnUpdate}
           onCancel={() => setIsEditing(false)}
         />
       </Drawer>

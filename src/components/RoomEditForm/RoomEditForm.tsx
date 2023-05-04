@@ -1,28 +1,53 @@
-import { FC, useState } from 'react';
+import { ChangeEvent, FC, useRef, useState } from 'react';
 import { RoomBase, RoomUpdateParams } from '@/models/types';
 
-import { NestedPageHeader } from '@/components/NestedPageHeader';
 import styles from './RoomEditForm.module.css';
 import { Avatar } from '@/components/Avatar';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import { ConfirmModal } from '@/components/ConfirmModal';
+import { IconButton } from '@/components/IconButton';
 
 type Props = {
   room: RoomBase;
-  onUpdate: (params: RoomUpdateParams) => Promise<void>;
-  onDelete: () => Promise<void>;
+  onUpdate: (params: RoomUpdateParams) => void;
+  onDelete: () => void;
 };
 
 export const RoomEditForm: FC<Props> = ({ room, onUpdate, onDelete }) => {
-  const [name, setName] = useState(room.name);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [name, setName] = useState(room.name);
+  const [file, setFile] = useState<File | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleOnChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    } else {
+      setFile(null);
+    }
+  };
 
   return (
     <>
       <div className={styles.root}>
         <div className={styles.icon}>
-          <Avatar size='large' url={room.thumbnailUrl} />
+          <IconButton
+            icon={
+              <Avatar
+                size='large'
+                url={file ? URL.createObjectURL(file) : room.thumbnailUrl}
+              />
+            }
+            onClick={() => inputRef.current?.click()}
+          />
+          <input
+            type='file'
+            accept='image/*'
+            ref={inputRef}
+            onChange={handleOnChangeFile}
+            hidden
+          />
         </div>
 
         <Input
@@ -38,6 +63,7 @@ export const RoomEditForm: FC<Props> = ({ room, onUpdate, onDelete }) => {
                 roomId: room.id,
                 name,
                 userIds: room.userIds,
+                thumbnailImage: file,
               })
             }
           />

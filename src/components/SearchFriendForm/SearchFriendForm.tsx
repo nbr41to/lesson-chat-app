@@ -5,7 +5,7 @@ import { Input } from '@/components/Input';
 import styles from './SearchFriendForm.module.css';
 
 type Props = {
-  onSubmit: (friendId: string) => Promise<void>;
+  onSubmit: (friendId: string) => void;
   onCancel: () => void;
 };
 

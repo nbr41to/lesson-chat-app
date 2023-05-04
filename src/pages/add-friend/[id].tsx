@@ -12,6 +12,7 @@ export default function AddFriend() {
   const [user, setUser] = useState<UserBase>();
   const authContext = useContext(AuthContext);
 
+  /* 追加済かどうかのフラグ */
   const isAdded = useMemo(() => {
     if (!user) return true;
     if (!authContext.user) return true;
@@ -23,14 +24,16 @@ export default function AddFriend() {
   useEffect(() => {
     if (!authContext.user || !userId) return;
 
+    /* ユーザ情報の取得 */
     (async () => {
       const response = await getUserById(userId);
       setUser(response);
     })();
   }, [userId, authContext.user]);
 
-  const handleAddFriend = async () => {
-    if (!user) return;
+  /* フレンド追加 */
+  const handleOnAddFriend = async () => {
+    if (!user || isAdded) return;
     try {
       await addFriend(user.id);
       const backPath = router.query.backUrl as string;
@@ -43,12 +46,12 @@ export default function AddFriend() {
   return (
     <>
       <Head>
-        <title>Room</title>
+        <title>フレンド検索 | トープ</title>
       </Head>
       <AddFriendTemplate
         user={user}
         isAdded={isAdded}
-        onAddFriend={handleAddFriend}
+        onAddFriend={handleOnAddFriend}
       />
     </>
   );

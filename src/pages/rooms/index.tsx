@@ -16,6 +16,7 @@ export default function Rooms() {
   useEffect(() => {
     if (!authContext.user) return;
 
+    /* ルーム一覧の取得 */
     (async () => {
       const resRooms = await getRooms();
       setRooms(resRooms);
@@ -24,9 +25,12 @@ export default function Rooms() {
     })();
   }, [authContext.user]);
 
-  const handleCreateRoom = async (params: RoomCreateParams) => {
+  /* ルームの作成 */
+  const handleOnCreateRoom = async (params: RoomCreateParams) => {
     try {
       await createRoom(params);
+
+      /* 再取得 */
       const resRooms = await getRooms();
       setRooms(resRooms);
     } catch (error) {
@@ -34,7 +38,8 @@ export default function Rooms() {
     }
   };
 
-  const handleSearchFriend = async (publicId: string) => {
+  /* フレンドの検索 */
+  const handleOnSearchFriend = async (publicId: string) => {
     try {
       const user = await getUserByPublicId(publicId);
       if (!user) return alert('ユーザーが見つかりませんでした');
@@ -48,13 +53,13 @@ export default function Rooms() {
   return (
     <>
       <Head>
-        <title>Rooms</title>
+        <title>ルーム一覧 | トープ</title>
       </Head>
       <RoomsTemplate
         rooms={rooms}
         friends={friends}
-        onCreateRoom={handleCreateRoom}
-        onSearchFriend={handleSearchFriend}
+        onCreateRoom={handleOnCreateRoom}
+        onSearchFriend={handleOnSearchFriend}
       />
     </>
   );

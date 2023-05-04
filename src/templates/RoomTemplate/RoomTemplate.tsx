@@ -5,42 +5,46 @@ import { MessageTextArea } from '@/components/MessageTextArea';
 import { getCurrentUser } from '@/firebase/authentication';
 import { PencilIcon, UsersThreeIcon } from '@/components/icons';
 import { NestedPageHeader } from '@/components/NestedPageHeader';
-import styles from './RoomTemplate.module.css';
 import { Drawer } from '@/components/Drawer';
 import { RoomEditForm } from '@/components/RoomEditForm';
 import { RoomMembers } from '@/components/RoomMembers';
+import styles from './RoomTemplate.module.css';
+import { useRouter } from 'next/router';
 
 type Props = {
   room: Room;
   messages: Message[];
-  onCreateMessage: (content: string) => void;
+  onSendMessage: (content: string) => void;
   onUpdateRoom: (params: RoomUpdateParams) => Promise<void>;
   onDeleteRoom: () => Promise<void>;
+  onLeaveRoom: () => Promise<void>;
 };
 
 export const RoomTemplate: FC<Props> = ({
   room,
   messages,
-  onCreateMessage,
+  onSendMessage,
   onUpdateRoom,
   onDeleteRoom,
+  onLeaveRoom,
 }) => {
+  const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [isMemberSetting, setIsMemberSetting] = useState(false);
   const [messageText, setMessageText] = useState('');
   const currentUser = getCurrentUser();
 
-  const handleCreateMessage = () => {
-    onCreateMessage(messageText);
+  const handleOnSendMessage = () => {
+    onSendMessage(messageText);
     setMessageText('');
   };
 
-  const handleUpdateRoom = async (params: RoomUpdateParams) => {
-    await onUpdateRoom(params);
+  const handleOnUpdateRoom = (params: RoomUpdateParams) => {
+    onUpdateRoom(params);
     setIsEditing(false);
   };
-  const handleDeleteRoom = async () => {
-    await onDeleteRoom();
+  const handleOnDeleteRoom = () => {
+    onDeleteRoom();
     setIsEditing(false);
   };
 
@@ -60,6 +64,7 @@ export const RoomTemplate: FC<Props> = ({
             onClick: () => setIsEditing(true),
           },
         ]}
+        onBack={() => router.push('/rooms')}
       />
       <div className={styles.root}>
         <div className={styles.messageList}>
@@ -85,7 +90,7 @@ export const RoomTemplate: FC<Props> = ({
             value={messageText}
             onChange={(e) => setMessageText(e.target.value)}
           />
-          <button onClick={handleCreateMessage}>送信</button>
+          <button onClick={handleOnSendMessage}>送信</button>
         </div>
       </div>
 
@@ -96,8 +101,8 @@ export const RoomTemplate: FC<Props> = ({
       >
         <RoomEditForm
           room={room}
-          onUpdate={handleUpdateRoom}
-          onDelete={handleDeleteRoom}
+          onUpdate={handleOnUpdateRoom}
+          onDelete={handleOnDeleteRoom}
         />
       </Drawer>
       <Drawer
@@ -105,7 +110,7 @@ export const RoomTemplate: FC<Props> = ({
         isOpen={isMemberSetting}
         onClose={() => setIsMemberSetting(false)}
       >
-        <RoomMembers room={room} />
+        <RoomMembers room={room} onLeave={onLeaveRoom} />
       </Drawer>
     </>
   );

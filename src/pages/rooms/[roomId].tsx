@@ -1,4 +1,4 @@
-import { addMessage } from '@/firebase/messages';
+import { sendMessage } from '@/firebase/messages';
 import { onSnapshotMessages } from '@/firebase/onSnapshotMessages';
 import { deleteRoom, getRoom, updateRoom } from '@/firebase/rooms';
 import { RoomTemplate } from '@/templates/RoomTemplate';
@@ -7,6 +7,8 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '@/context/auth';
+import { Unsubscribe } from 'firebase/firestore';
+import { deleteFile } from '@/firebase/storage';
 
 export default function Room() {
   const router = useRouter();
@@ -18,27 +20,50 @@ export default function Room() {
   useEffect(() => {
     if (!roomId || !authContext.user) return;
 
-    const unsubscribe = onSnapshotMessages(roomId, (messages) => {
-      setMessages(messages);
-    });
+    let unsubscribe: Unsubscribe;
+    /* メッセージ一覧の取得と監視 */
+    try {
+      unsubscribe = onSnapshotMessages(roomId, (messages) => {
+        setMessages(messages);
+      });
+    } catch (error) {
+      console.error(error);
+    }
 
+    /* ルーム情報の取得 */
     (async () => {
-      const response = await getRoom(roomId);
-      setRoom(response);
+      try {
+        const response = await getRoom(roomId);
+        setRoom(response);
+      } catch (error) {
+        console.error(error);
+      }
     })();
 
     return () => {
+      /* 監視の終了 */
       unsubscribe();
     };
   }, [roomId, authContext.user]);
 
-  const handleCreateMessage = (content: string) => {
-    addMessage({ roomId, content });
+  /* メッセージの送信 */
+  const handleOnSendMessage = (content: string) => {
+    try {
+      sendMessage({ roomId, content });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleUpdateRoom = async (params: RoomUpdateParams) => {
+  /* ルーム情報の更新 */
+  const handleOnUpdateRoom = async (params: RoomUpdateParams) => {
     try {
       await updateRoom(params);
+      if (room?.thumbnailUrl && params.thumbnailImage) {
+        await deleteFile(room.thumbnailUrl);
+      }
+
+      /* 再取得 */
       const response = await getRoom(roomId);
       setRoom(response);
     } catch (error) {
@@ -46,9 +71,26 @@ export default function Room() {
     }
   };
 
-  const handleDeleteRoom = async () => {
+  /* ルームの削除 */
+  const handleOnDeleteRoom = async () => {
     try {
       await deleteRoom(roomId);
+      await router.push('/rooms');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  /* ルームを退室 */
+  const handleOnLeaveRoom = async () => {
+    if (!room) return;
+    try {
+      await updateRoom({
+        roomId,
+        name: room.name,
+        userIds: room.userIds.filter((id) => id !== authContext.user?.uid),
+        thumbnailImage: null,
+      });
       await router.push('/rooms');
     } catch (error) {
       console.error(error);
@@ -58,15 +100,16 @@ export default function Room() {
   return (
     <>
       <Head>
-        <title>Room</title>
+        <title>{room?.name} | トープ</title>
       </Head>
       {room && (
         <RoomTemplate
           room={room}
           messages={messages}
-          onCreateMessage={handleCreateMessage}
-          onUpdateRoom={handleUpdateRoom}
-          onDeleteRoom={handleDeleteRoom}
+          onSendMessage={handleOnSendMessage}
+          onUpdateRoom={handleOnUpdateRoom}
+          onDeleteRoom={handleOnDeleteRoom}
+          onLeaveRoom={handleOnLeaveRoom}
         />
       )}
     </>

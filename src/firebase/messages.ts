@@ -15,8 +15,8 @@ import {
 
 const db = getFirestore(app);
 
-/* 新規Messagesを追加 */
-export const addMessage = async (params: {
+/* 新規Messagesを送信 */
+export const sendMessage = async (params: {
   roomId: string;
   content: string;
 }) => {
