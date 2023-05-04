@@ -1,7 +1,5 @@
 .root {
   padding: 40px 20px;
-  background-color: var(--white);
-  min-height: 100vh;
 }
 
 .root h1 {
@@ -13,6 +11,7 @@
 .root .form {
   padding: 40px 0;
 }
+
 .inputWrapper + .inputWrapper {
   margin-top: 16px;
 }

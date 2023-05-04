@@ -10,7 +10,7 @@ import {
   UserCircleActiveIcon,
   UserCircleIcon,
 } from '@/components/icons';
-import { login, logout } from '@/firebase/authentication';
+import { logout } from '@/firebase/authentication';
 import { ConfirmModal } from '@/components/ConfirmModal';
 
 type Props = {};

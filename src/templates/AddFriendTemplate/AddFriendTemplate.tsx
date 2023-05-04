@@ -18,11 +18,10 @@ export const AddFriendTemplate: FC<Props> = ({
   isAdded,
 }) => {
   return (
-    <div className={styles.root}>
+    <>
       <NestedPageHeader title='フレンド追加' />
-
       {user ? (
-        <div className={styles.pageBody}>
+        <div className={styles.root}>
           <div className={styles.icon}>
             <Avatar size='large' name={user.name} url={user.avatarUrl} />
           </div>
@@ -39,6 +38,6 @@ export const AddFriendTemplate: FC<Props> = ({
       ) : (
         <p className={styles.notFoundMessage}>このユーザは存在しません</p>
       )}
-    </div>
+    </>
   );
 };

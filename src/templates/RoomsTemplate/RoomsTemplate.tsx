@@ -45,7 +45,6 @@ export const RoomsTemplate: FC<Props> = ({
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-
           <PulldownMenu
             buttonIcon={<PlusCircleIcon width='32px' height='32px' />}
             data={[
@@ -77,6 +76,7 @@ export const RoomsTemplate: FC<Props> = ({
             ))}
         </div>
       </div>
+
       <Drawer
         title='ルーム作成'
         isOpen={isCreating}

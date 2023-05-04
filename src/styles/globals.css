@@ -1,4 +1,10 @@
 :root {
+  /* sizes */
+  --main-width: 400px;
+  --header-height: 54px;
+  --footer-height: 54px;
+
+  /* colors */
   --white: #ffffff;
   --black: #000000;
   --gray: #686868;
@@ -16,17 +22,11 @@
 
 html,
 body {
-  position: relative;
-  max-width: 375px;
-  margin: 0 auto;
-  padding: 0;
-
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 18px;
-
   background-color: var(--light-gray);
 }
 

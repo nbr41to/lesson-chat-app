@@ -1,7 +1,5 @@
 .root {
   padding: 16px;
-  background-color: var(--white);
-  min-height: 100vh;
 }
 
 .pageHeader {

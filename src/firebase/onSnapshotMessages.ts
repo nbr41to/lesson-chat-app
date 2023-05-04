@@ -7,6 +7,7 @@ import {
   query,
   where,
 } from 'firebase/firestore';
+import { Timestamp } from 'firebase/firestore/lite';
 
 const db = getFirestore(app);
 
@@ -18,7 +19,10 @@ export const onSnapshotMessages = (
   const q = query(collection(db, 'messages'), where('roomId', '==', roomId));
 
   return onSnapshot(q, (querySnapshot) => {
-    const messages = querySnapshot.docs.map((doc) => doc.data() as Message);
-    callback(messages.reverse());
+    const messages = querySnapshot.docs.map((doc) => doc.data());
+    const sortedMessages = messages.sort(
+      (a, b) => a.sendAt.seconds - b.sendAt.seconds,
+    ) as Message[];
+    callback(sortedMessages);
   });
 };

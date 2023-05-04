@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 0;
   width: 375px;
-  height: 54px;
+  height: var(--footer-height);
   background-color: var(--white);
   display: flex;
   justify-content: space-around;

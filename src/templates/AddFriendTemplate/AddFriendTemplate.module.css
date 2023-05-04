@@ -1,9 +1,4 @@
 .root {
-  background-color: var(--white);
-  min-height: 100vh;
-}
-
-.pageBody {
   padding: 40px 16px;
 }
 

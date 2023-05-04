@@ -5,7 +5,7 @@
 
 .root a {
   width: fit-content;
-  height: 54px;
+  height: var(--header-height);
   display: flex;
   align-items: center;
   gap: 16px;
