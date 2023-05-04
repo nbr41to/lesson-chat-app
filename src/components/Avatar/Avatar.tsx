@@ -15,11 +15,12 @@ const range = {
 };
 
 export const Avatar: FC<Props> = ({ url, name, size = 'medium' }) => {
+  const sizeStyles = styles[size];
   const imageStyles = size === 'small' ? styles.smallImage : styles.image;
   const nameStyles = size === 'small' ? styles.smallName : styles.name;
 
   return (
-    <div className={styles.root}>
+    <div className={`$styles.root} ${sizeStyles}`}>
       <Image
         className={imageStyles}
         src={url}

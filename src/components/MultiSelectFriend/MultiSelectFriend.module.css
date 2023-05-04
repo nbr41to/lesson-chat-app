@@ -1,0 +1,15 @@
+.root {
+}
+
+.selectItemList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.selectItem {
+  display: flex;
+  gap: 16px;
+  cursor: pointer;
+}

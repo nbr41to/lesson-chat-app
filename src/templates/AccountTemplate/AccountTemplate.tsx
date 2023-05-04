@@ -35,6 +35,7 @@ export const AccountTemplate: FC<Props> = ({
     onUpdate(params);
     setIsEditing(false);
   };
+  console.log(friends);
 
   return (
     <>
@@ -43,7 +44,6 @@ export const AccountTemplate: FC<Props> = ({
           <h2>プロフィール</h2>
           <IconButton icon={<SettingIcon />} onClick={() => {}} />
         </div>
-
         <div className={styles.profileWrapper}>
           <Avatar size='large' url={user.avatarUrl} />
           <div className={styles.profile}>
@@ -59,7 +59,6 @@ export const AccountTemplate: FC<Props> = ({
             onClick={() => setIsEditing(true)}
           />
         </div>
-
         <Button
           variant='secondary'
           size='large'
@@ -67,7 +66,6 @@ export const AccountTemplate: FC<Props> = ({
           leftIcon={<UserPlusBlackIcon />}
           onClick={() => setIsSearching(true)}
         />
-
         <div className={styles.friends}>
           <h2>フレンド({friends.length})</h2>
           <div className={styles.friendsItems}>

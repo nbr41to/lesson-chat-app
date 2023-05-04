@@ -1,6 +1,17 @@
 .root {
   position: relative;
-  height: min-content;
+}
+.small {
+  width: 16px;
+  height: 16px;
+}
+.medium {
+  width: 48px;
+  height: 48px;
+}
+.large {
+  width: 72px;
+  height: 72px;
 }
 
 .image {

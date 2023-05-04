@@ -16,3 +16,14 @@
 .deleteButtonWrapper {
   margin-top: 40px;
 }
+
+.selectFriends {
+  margin-top: 40px;
+}
+
+.selectFriends > p {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  margin-bottom: 12px;
+}

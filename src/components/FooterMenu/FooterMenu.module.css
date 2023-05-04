@@ -1,7 +1,7 @@
 .root {
   position: fixed;
   bottom: 0;
-  width: 375px;
+  width: var(--main-width);
   height: var(--footer-height);
   background-color: var(--white);
   display: flex;

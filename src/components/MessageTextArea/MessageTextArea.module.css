@@ -1,13 +1,6 @@
 .root {
-  /* width: 100%;
-  height: 32px;
-  border: 0.5px solid var(--gray);
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 10px; */
   position: relative;
+  width: 100%;
 }
 
 .root .pencilLineIcon {

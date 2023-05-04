@@ -8,3 +8,14 @@
   flex-direction: column;
   gap: 16px;
 }
+
+.textarea {
+  position: absolute;
+  top: calc(100dvh - var(--footer-height) - 48px);
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+}

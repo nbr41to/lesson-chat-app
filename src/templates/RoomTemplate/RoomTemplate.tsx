@@ -1,31 +1,36 @@
 import { FC, useState } from 'react';
-import { Message, Room, RoomUpdateParams } from '@/models/types';
+import { Message, Room, RoomUpdateParams, UserBase } from '@/models/types';
 import { ChatBubble } from '@/components/ChatBubble';
 import { MessageTextArea } from '@/components/MessageTextArea';
 import { getCurrentUser } from '@/firebase/authentication';
-import { PencilIcon, UsersThreeIcon } from '@/components/icons';
+import { PencilIcon, SendIcon, UsersThreeIcon } from '@/components/icons';
 import { NestedPageHeader } from '@/components/NestedPageHeader';
 import { Drawer } from '@/components/Drawer';
 import { RoomEditForm } from '@/components/RoomEditForm';
 import { RoomMembers } from '@/components/RoomMembers';
 import styles from './RoomTemplate.module.css';
 import { useRouter } from 'next/router';
+import { IconButton } from '@/components/IconButton';
 
 type Props = {
   room: Room;
+  friends: UserBase[];
   messages: Message[];
   onSendMessage: (content: string) => void;
   onUpdateRoom: (params: RoomUpdateParams) => Promise<void>;
   onDeleteRoom: () => Promise<void>;
+  onInviteUsers: (userIds: string[]) => Promise<void>;
   onLeaveRoom: () => Promise<void>;
 };
 
 export const RoomTemplate: FC<Props> = ({
   room,
+  friends,
   messages,
   onSendMessage,
   onUpdateRoom,
   onDeleteRoom,
+  onInviteUsers,
   onLeaveRoom,
 }) => {
   const router = useRouter();
@@ -43,6 +48,7 @@ export const RoomTemplate: FC<Props> = ({
     onUpdateRoom(params);
     setIsEditing(false);
   };
+
   const handleOnDeleteRoom = () => {
     onDeleteRoom();
     setIsEditing(false);
@@ -85,12 +91,12 @@ export const RoomTemplate: FC<Props> = ({
           ))}
         </div>
 
-        <div>
+        <div className={styles.textarea}>
           <MessageTextArea
             value={messageText}
             onChange={(e) => setMessageText(e.target.value)}
           />
-          <button onClick={handleOnSendMessage}>送信</button>
+          <IconButton icon={<SendIcon />} onClick={handleOnSendMessage} />
         </div>
       </div>
 
@@ -110,7 +116,12 @@ export const RoomTemplate: FC<Props> = ({
         isOpen={isMemberSetting}
         onClose={() => setIsMemberSetting(false)}
       >
-        <RoomMembers room={room} onLeave={onLeaveRoom} />
+        <RoomMembers
+          room={room}
+          friends={friends}
+          onInvite={onInviteUsers}
+          onLeave={onLeaveRoom}
+        />
       </Drawer>
     </>
   );

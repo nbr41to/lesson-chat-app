@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { Avatar } from '@/components/Avatar';
 import { RoomCreateParams, User } from '@/models/types';
 import styles from './RoomCreateForm.module.css';
+import { MultiSelectFriend } from '@/components/MultiSelectFriend';
 
 type Props = {
   friends: User[];
@@ -17,6 +18,7 @@ type Props = {
 export const RoomCreateForm: FC<Props> = ({ friends, onSubmit }) => {
   const router = useRouter();
   const [name, setName] = useState<string>('');
+  const [friendIds, setFriendIds] = useState<string[]>([]);
   const [file, setFile] = useState<File | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -28,13 +30,21 @@ export const RoomCreateForm: FC<Props> = ({ friends, onSubmit }) => {
     }
   };
 
+  const handleOnToggleFriendIds = (id: string) => {
+    if (friendIds.includes(id)) {
+      setFriendIds(friendIds.filter((friendId) => friendId !== id));
+    } else {
+      setFriendIds([...friendIds, id]);
+    }
+  };
+
   const handleOnSubmit = async () => {
     if (!name || !file) return;
 
     onSubmit({
       name,
       file,
-      userIds: ['paPVFUZHApbygZz2VW7mm2FprQl2'], // mockとしてテストユーザを追加
+      userIds: [...friendIds, 'paPVFUZHApbygZz2VW7mm2FprQl2'], // mockとしてテストユーザを追加
     });
     setName('');
     setFile(null);
@@ -74,11 +84,20 @@ export const RoomCreateForm: FC<Props> = ({ friends, onSubmit }) => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
+
       <div className={styles.submitButtonWrapper}>
         <Button label='作成' onClick={handleOnSubmit} />
       </div>
       <div className={styles.deleteButtonWrapper}>
         <Button variant='secondary' label='キャンセル' onClick={router.back} />
+      </div>
+      <div className={styles.selectFriends}>
+        <p>メンバーを選択</p>
+        <MultiSelectFriend
+          friends={friends}
+          selectedIds={friendIds}
+          onToggle={handleOnToggleFriendIds}
+        />
       </div>
     </div>
   );

@@ -16,6 +16,11 @@
   margin: 40px 0 8px;
   padding-left: 8px;
 }
+
 .copyLink {
   margin-bottom: 60px;
+}
+
+.inviteDrawerContent {
+  padding: 40px 16px;
 }
