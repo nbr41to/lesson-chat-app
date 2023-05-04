@@ -30,18 +30,15 @@ export const RoomCreateForm: FC<Props> = ({ friends, onSubmit }) => {
 
   const handleSubmit = async () => {
     if (!name || !file) return;
-    try {
-      await onSubmit({
-        name,
-        file,
-        userIds: ['paPVFUZHApbygZz2VW7mm2FprQl2'], // mockとして初期値を設定
-      });
-      setName('');
-      setFile(null);
-      router.push('/rooms');
-    } catch (error) {
-      console.error(error);
-    }
+
+    await onSubmit({
+      name,
+      file,
+      userIds: ['paPVFUZHApbygZz2VW7mm2FprQl2'], // mockとして初期値を設定
+    });
+    setName('');
+    setFile(null);
+    router.push('/rooms');
   };
 
   return (

@@ -17,49 +17,39 @@ export const signUp = async (params: {
   email: string;
   password: string;
 }) => {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      params.email,
-      params.password,
-    );
-    const user = userCredential.user;
+  /* Authenticationへ登録 */
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    params.email,
+    params.password,
+  );
 
-    await createUser({
-      id: user.uid,
-      name: params.name,
-      email: params.email,
-    });
+  /* DBに登録 */
+  const user = userCredential.user;
+  await createUser({
+    id: user.uid,
+    name: params.name,
+    email: params.email,
+  });
 
-    return user;
-  } catch (error) {
-    console.error(error);
-  }
+  return user;
 };
 
 /* ログイン */
 export const login = async (email: string, password: string) => {
-  try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password,
-    );
-    const user = userCredential.user;
+  const userCredential = await signInWithEmailAndPassword(
+    auth,
+    email,
+    password,
+  );
+  const user = userCredential.user;
 
-    return user;
-  } catch (error) {
-    console.error(error);
-  }
+  return user;
 };
 
 /* ログアウト */
 export const logout = async () => {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    console.error(error);
-  }
+  await signOut(auth);
 };
 
 /* 認証ユーザの取得 */

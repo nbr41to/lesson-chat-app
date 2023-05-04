@@ -20,21 +20,17 @@ export const addMessage = async (params: {
   roomId: string;
   content: string;
 }) => {
-  try {
-    const currentUser = getCurrentUser();
-    if (!currentUser) throw new Error('Not logged in');
-    const docRef = doc(collection(db, 'messages'));
+  const currentUser = getCurrentUser();
+  if (!currentUser) throw new Error('Not logged in');
 
-    await setDoc(docRef, {
-      id: docRef.id,
-      roomId: params.roomId,
-      userId: currentUser?.uid,
-      content: params.content,
-      sendAt: new Date(),
-    });
-  } catch (error) {
-    console.error('Error addMessage: ', error);
-  }
+  const docRef = doc(collection(db, 'messages'));
+  await setDoc(docRef, {
+    id: docRef.id,
+    roomId: params.roomId,
+    userId: currentUser?.uid,
+    content: params.content,
+    sendAt: new Date(),
+  });
 };
 
 /* roomIdから最新のMessageを取得 */
