@@ -2,7 +2,7 @@ import { sendMessage } from '@/firebase/messages';
 import { onSnapshotMessages } from '@/firebase/onSnapshotMessages';
 import { deleteRoom, getRoom, updateRoom } from '@/firebase/rooms';
 import { RoomTemplate } from '@/templates/RoomTemplate';
-import { Message, Room, RoomUpdateParams, UserBase } from '@/models/types';
+import { Message, Room, RoomUpdateParams, User } from '@/models/types';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useMemo, useState } from 'react';
@@ -15,7 +15,7 @@ export default function Room() {
   const router = useRouter();
   const roomId = router.query.roomId as string;
   const [room, setRoom] = useState<Room>();
-  const [friends, setFriends] = useState<UserBase[]>([]);
+  const [friends, setFriends] = useState<User[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const authContext = useContext(AuthContext);
   /* ルームに招待されていないフレンド一覧 */

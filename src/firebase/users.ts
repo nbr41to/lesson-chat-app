@@ -1,7 +1,7 @@
 import { getCurrentUser } from '@/firebase/authentication';
 import { app } from '@/firebase/config';
 import { uploadAvatarFile } from '@/firebase/storage';
-import { User, UserBase, UserUpdateParams } from '@/models/types';
+import { User, UserUpdateParams } from '@/models/types';
 import {
   getFirestore,
   collection,
@@ -94,7 +94,7 @@ export const getUserByPublicId = async (publicId: string) => {
   const querySnapshot = await getDocs(q);
   if (querySnapshot.docs.length === 0) return null;
 
-  return querySnapshot.docs[0].data() as UserBase;
+  return querySnapshot.docs[0].data() as User;
 };
 
 /* IDからユーザを取得 */
@@ -104,7 +104,7 @@ export const getUserById = async (userId: string) => {
 
   const docRef = await getDoc(doc(db, 'users', userId));
 
-  return docRef.data() as UserBase;
+  return docRef.data() as User;
 };
 
 /* フレンド追加 */

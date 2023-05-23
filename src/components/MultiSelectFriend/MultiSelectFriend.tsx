@@ -1,11 +1,11 @@
 import { FC, useState } from 'react';
 import styles from './MultiSelectFriend.module.css';
-import { UserBase } from '@/models/types';
+import { User } from '@/models/types';
 import { FriendItem } from '@/components/FriendItem';
 import { SearchInput } from '@/components/SearchInput';
 
 type Props = {
-  friends: UserBase[];
+  friends: User[];
   selectedIds: string[];
   onToggle: (id: string) => void;
 };

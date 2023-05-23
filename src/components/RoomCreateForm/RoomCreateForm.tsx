@@ -71,6 +71,7 @@ export const RoomCreateForm: FC<Props> = ({ friends, onSubmit }) => {
           }}
         />
         <input
+          data-testId='file-input'
           type='file'
           accept='image/*'
           ref={inputRef}

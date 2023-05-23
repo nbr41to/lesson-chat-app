@@ -11,6 +11,7 @@ type Props = {
 export const IconButton: FC<Props> = ({ icon, onClick, width, height }) => {
   return (
     <button
+      data-testId='IconButton'
       className={styles.button}
       style={{ width: width, height: height }}
       onClick={onClick}

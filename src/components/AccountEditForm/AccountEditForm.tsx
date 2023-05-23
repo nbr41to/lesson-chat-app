@@ -66,6 +66,7 @@ export const AccountEditForm: FC<Props> = ({
           }}
         />
         <input
+          data-testid='file-input'
           type='file'
           accept='image/*'
           ref={inputRef}

@@ -10,6 +10,7 @@ import { IconButton } from '@/components/IconButton';
 import { Drawer } from '@/components/Drawer';
 import { AccountEditForm } from '@/components/AccountEditForm';
 import { SearchFriendForm } from '@/components/SearchFriendForm';
+import { PulldownMenu } from '@/components/PulldownMenu';
 
 type Props = {
   user: User;
@@ -35,14 +36,32 @@ export const AccountTemplate: FC<Props> = ({
     onUpdate(params);
     setIsEditing(false);
   };
-  console.log(friends);
 
   return (
     <>
       <div className={styles.root}>
         <div className={styles.pageHeader}>
           <h2>プロフィール</h2>
-          <IconButton icon={<SettingIcon />} onClick={() => {}} />
+          <PulldownMenu
+            buttonIcon={<SettingIcon />}
+            data={[
+              {
+                icon: <SettingIcon />,
+                label: 'セキュリティ',
+                onClick: () => {},
+              },
+              {
+                icon: <SettingIcon />,
+                label: 'アカウント消去',
+                onClick: () => {},
+              },
+              {
+                icon: <SettingIcon />,
+                label: 'ログアウト',
+                onClick: () => {},
+              },
+            ]}
+          />
         </div>
         <div className={styles.profileWrapper}>
           <Avatar size='large' url={user.avatarUrl} />

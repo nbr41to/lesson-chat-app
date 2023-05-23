@@ -36,7 +36,11 @@ export const PulldownMenu: FC<Props> = ({
       />
       {isOpen && (
         <>
-          <div className={styles.overlay} onClick={() => setIsOpen(false)} />
+          <div
+            className={styles.overlay}
+            data-testId='PulldownMenuOverlay'
+            onClick={() => setIsOpen(false)}
+          />
           <div className={styles.menu}>
             {data.map((item, index) => (
               <div

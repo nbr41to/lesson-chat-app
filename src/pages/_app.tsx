@@ -5,7 +5,10 @@ import { useEffect, useState } from 'react';
 import { onAuthStateChange } from '@/firebase/authentication';
 import { useRouter } from 'next/router';
 import { Layout } from '@/components/Layout';
+import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
+
+const inter = Inter({ subsets: ['latin'] });
 
 const publicRoutes = ['/', '/login', '/signup'];
 
@@ -28,10 +31,12 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router]);
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      <Layout isLogin={user !== null}>
-        <Component {...pageProps} />
-      </Layout>
-    </AuthContext.Provider>
+    <div className={inter.className}>
+      <AuthContext.Provider value={{ user, setUser }}>
+        <Layout isLogin={user !== null}>
+          <Component {...pageProps} />
+        </Layout>
+      </AuthContext.Provider>
+    </div>
   );
 }

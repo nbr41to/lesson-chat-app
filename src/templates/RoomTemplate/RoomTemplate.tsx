@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Message, Room, RoomUpdateParams, UserBase } from '@/models/types';
+import { Message, Room, RoomUpdateParams, User } from '@/models/types';
 import { ChatBubble } from '@/components/ChatBubble';
 import { MessageTextArea } from '@/components/MessageTextArea';
 import { getCurrentUser } from '@/firebase/authentication';
@@ -14,7 +14,7 @@ import { IconButton } from '@/components/IconButton';
 
 type Props = {
   room: Room;
-  friends: UserBase[];
+  friends: User[];
   messages: Message[];
   onSendMessage: (content: string) => void;
   onUpdateRoom: (params: RoomUpdateParams) => Promise<void>;

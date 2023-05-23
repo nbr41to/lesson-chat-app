@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Room, UserBase } from '@/models/types';
+import { Room, User } from '@/models/types';
 
 import { NestedPageHeader } from '@/components/NestedPageHeader';
 import styles from './JoinRoomTemplate.module.css';

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { JoinRoomTemplate } from './JoinRoomTemplate';
+import { dummyRoom } from '@/models/mocks/room';
 
 const meta: Meta<typeof JoinRoomTemplate> = {
   component: JoinRoomTemplate,
@@ -12,10 +13,13 @@ export default meta;
 type Story = StoryObj<typeof JoinRoomTemplate>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    room: dummyRoom,
+  },
 };
 export const Added: Story = {
   args: {
+    room: dummyRoom,
     isJoined: true,
   },
 };

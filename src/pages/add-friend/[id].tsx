@@ -1,4 +1,4 @@
-import { UserBase } from '@/models/types';
+import { User } from '@/models/types';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useMemo, useState } from 'react';
@@ -9,7 +9,7 @@ import { AuthContext } from '@/context/auth';
 export default function AddFriend() {
   const router = useRouter();
   const userId = router.query.id as string;
-  const [user, setUser] = useState<UserBase>();
+  const [user, setUser] = useState<User>();
   const authContext = useContext(AuthContext);
 
   /* 追加済かどうかのフラグ */

@@ -14,10 +14,18 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    // layout: 'fullscreen',
   },
   decorators: [
     (Story) => (
-      <div className={inter.className}>
+      <div
+        className={inter.className}
+        style={{
+          maxWidth: 'var(--main-width)',
+          margin: '0 auto',
+          position: 'relative',
+        }}
+      >
         <Story />
       </div>
     ),

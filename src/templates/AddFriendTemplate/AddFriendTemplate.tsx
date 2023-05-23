@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { UserBase } from '@/models/types';
+import { User } from '@/models/types';
 
 import { NestedPageHeader } from '@/components/NestedPageHeader';
 import styles from './AddFriendTemplate.module.css';
@@ -7,7 +7,7 @@ import { Avatar } from '@/components/Avatar';
 import { Button } from '@/components/Button';
 
 type Props = {
-  user: UserBase | undefined;
+  user: User | undefined;
   onAddFriend: () => Promise<void>;
   isAdded: boolean;
 };

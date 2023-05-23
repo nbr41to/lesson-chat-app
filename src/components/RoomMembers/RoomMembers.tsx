@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Room, UserBase } from '@/models/types';
+import { Room, User } from '@/models/types';
 
 import { Avatar } from '@/components/Avatar';
 import { PlusIcon } from '@/components/icons';
@@ -13,7 +13,7 @@ import { MultiSelectFriend } from '@/components/MultiSelectFriend';
 
 type Props = {
   room: Room;
-  friends: UserBase[];
+  friends: User[];
   onInvite: (userIds: string[]) => void;
   onLeave: () => void;
 };

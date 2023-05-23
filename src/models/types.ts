@@ -1,16 +1,12 @@
 /**
  * User
  */
-export type UserBase = {
+export type User = {
   id: string;
   publicId: string;
   name: string;
   avatarUrl: string;
   friendIds: string[];
-};
-
-export type User = UserBase & {
-  friends: User[]; // firestoreから取得時に差し込む
 };
 
 export type UserUpdateParams = {
@@ -36,7 +32,7 @@ export type RoomListItem = RoomBase & {
 };
 
 export type Room = RoomBase & {
-  users: UserBase[]; // firestoreから取得時に差し込む
+  users: User[]; // firestoreから取得時に差し込む
 };
 
 export type RoomCreateParams = {

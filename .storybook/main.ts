@@ -1,5 +1,14 @@
+import type { AddonOptionsBabel } from '@storybook/addon-coverage';
 import type { StorybookConfig } from '@storybook/nextjs';
 import path from 'path';
+
+const coverageConfig: AddonOptionsBabel = {
+  istanbul: {
+    // include: ['**/stories/**'],
+    exclude: ['**/firebase/**'],
+    excludeNodeModules: true,
+  },
+};
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -7,6 +16,10 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
+    {
+      name: '@storybook/addon-coverage',
+      options: coverageConfig,
+    },
   ],
   framework: {
     name: '@storybook/nextjs',
