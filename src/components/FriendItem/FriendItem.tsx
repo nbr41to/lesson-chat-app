@@ -1,13 +1,15 @@
 import { FC } from 'react';
 import { Avatar } from '@/components/Avatar';
 import styles from './FriendItem.module.css';
+import { User } from '@/models/types';
 
 type Props = {
-  avatarUrl: string;
-  name: string;
+  user: User;
 };
 
-export const FriendItem: FC<Props> = ({ avatarUrl, name }) => {
+export const FriendItem: FC<Props> = ({ user }) => {
+  const { avatarUrl, name } = user;
+
   return (
     <div className={styles.root}>
       <Avatar url={avatarUrl} />

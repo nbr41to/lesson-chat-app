@@ -1,20 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { RoomItem } from './RoomItem';
+import { dummyRoomListItems } from '@/models/mocks/room';
 
 const meta: Meta<typeof RoomItem> = {
   component: RoomItem,
   tags: ['autodocs'],
   args: {
-    room: {
-      id: 'room-id',
-      publicId: 'public-id',
-      ownerId: 'owner-id',
-      thumbnailUrl: './avatar_1.png',
-      name: 'さやか',
-      userIds: ['user-id'],
-      latestMessage: 'カフェいるけど来れる？',
-    },
+    room: dummyRoomListItems[0],
   },
 };
 

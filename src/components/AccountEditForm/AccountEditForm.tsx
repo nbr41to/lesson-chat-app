@@ -5,23 +5,20 @@ import { Input } from '@/components/Input';
 import { IconButton } from '@/components/IconButton';
 import { Avatar } from '@/components/Avatar';
 import styles from './AccountEditForm.module.css';
-import { UserUpdateParams } from '@/models/types';
+import { User, UserUpdateParams } from '@/models/types';
 
 type Props = {
-  name: string;
-  publicId: string;
-  avatarUrl: string;
+  user: User;
   onSubmit: (params: UserUpdateParams) => void;
   onCancel: () => void;
 };
 
-export const AccountEditForm: FC<Props> = ({
-  name: initialName,
-  publicId: initialPublicId,
-  avatarUrl: initialAvatarUrl,
-  onSubmit,
-  onCancel,
-}) => {
+export const AccountEditForm: FC<Props> = ({ user, onSubmit, onCancel }) => {
+  const {
+    name: initialName,
+    publicId: initialPublicId,
+    avatarUrl: initialAvatarUrl,
+  } = user;
   const [name, setName] = useState(initialName);
   const [publicId, setPublicId] = useState(initialPublicId);
   const [file, setFile] = useState<File | null>(null);

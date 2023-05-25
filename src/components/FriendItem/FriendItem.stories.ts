@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FriendItem } from './FriendItem';
+import { dummyUsers } from '@/models/mocks/user';
 
 const meta: Meta<typeof FriendItem> = {
   component: FriendItem,
   tags: ['autodocs'],
   args: {
-    name: 'さやか',
-    avatarUrl: './avatar_1.png',
+    user: dummyUsers[0],
   },
 };
 

@@ -1,19 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { RoomEditForm } from './RoomEditForm';
+import { dummyRoom } from '@/models/mocks/room';
 
 const meta: Meta<typeof RoomEditForm> = {
   component: RoomEditForm,
   tags: ['autodocs'],
   args: {
-    room: {
-      id: 'room-id',
-      publicId: 'public-id',
-      ownerId: 'owner-id',
-      thumbnailUrl: './avatar_1.png',
-      name: 'さやか',
-      userIds: ['user-id'],
-    },
+    room: dummyRoom,
   },
 };
 

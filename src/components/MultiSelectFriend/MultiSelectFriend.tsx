@@ -33,7 +33,7 @@ export const MultiSelectFriend: FC<Props> = ({
               onClick={() => onToggle(user.id)}
             >
               <input type='checkbox' checked={selectedIds.includes(user.id)} />
-              <FriendItem {...user} />
+              <FriendItem user={user} />
             </div>
           ))}
       </div>

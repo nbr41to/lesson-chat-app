@@ -2,14 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { AccountEditForm } from './AccountEditForm';
 import { userEvent, within } from '@storybook/testing-library';
+import { dummyUsers } from '@/models/mocks/user';
 
 const meta: Meta<typeof AccountEditForm> = {
   component: AccountEditForm,
   tags: ['autodocs'],
   args: {
-    name: 'さやか',
-    publicId: 'h8eaiuj',
-    avatarUrl: './avatar_1.png',
+    user: dummyUsers[0],
   },
 };
 

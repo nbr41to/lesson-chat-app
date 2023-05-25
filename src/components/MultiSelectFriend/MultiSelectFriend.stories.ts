@@ -10,7 +10,7 @@ const meta: Meta<typeof MultiSelectFriend> = {
   tags: ['autodocs'],
   args: {
     friends: dummyUsers,
-    selectedIds: ['paPVFUZHApbygZz2VW7mm2FprQl2'],
+    selectedIds: [],
   },
 };
 

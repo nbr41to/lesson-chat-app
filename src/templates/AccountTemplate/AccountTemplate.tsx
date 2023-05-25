@@ -89,11 +89,7 @@ export const AccountTemplate: FC<Props> = ({
           <h2>フレンド({friends.length})</h2>
           <div className={styles.friendsItems}>
             {friends.map((friend) => (
-              <FriendItem
-                key={friend.id}
-                name={friend.name}
-                avatarUrl={friend.avatarUrl}
-              />
+              <FriendItem key={friend.id} user={friend} />
             ))}
           </div>
         </div>
@@ -105,9 +101,7 @@ export const AccountTemplate: FC<Props> = ({
         onClose={() => setIsEditing(false)}
       >
         <AccountEditForm
-          name={user.name}
-          publicId={user.publicId}
-          avatarUrl={user.avatarUrl}
+          user={user}
           onSubmit={handleOnUpdate}
           onCancel={() => setIsEditing(false)}
         />
