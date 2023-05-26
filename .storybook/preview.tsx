@@ -1,9 +1,6 @@
 import type { Preview } from '@storybook/react';
 import React from 'react';
-import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 const preview: Preview = {
   parameters: {
@@ -19,7 +16,6 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <div
-        className={inter.className}
         style={{
           maxWidth: 'var(--main-width)',
           margin: '0 auto',
