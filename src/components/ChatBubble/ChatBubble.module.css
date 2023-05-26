@@ -4,6 +4,7 @@
 
 .bubble {
   max-width: 200px;
+  width: fit-content;
   color: var(--white);
   padding: 10px 12px;
   font-weight: 500;
