@@ -12,7 +12,9 @@ import PlusIcon from 'public/plus.svg';
 import SearchIcon from 'public/search.svg';
 import SendIcon from 'public/send.svg';
 import SettingIcon from 'public/setting.svg';
+import SettingWhiteIcon from 'public/setting_white.svg';
 import SignOutIcon from 'public/sign_out.svg';
+import TrashIcon from 'public/trash.svg';
 import UserCircleActiveIcon from 'public/user_circle_active.svg';
 import UserCircleIcon from 'public/user_circle.svg';
 import UserPlusBlackIcon from 'public/user_plus_black.svg';
@@ -34,7 +36,9 @@ export {
   SearchIcon,
   SendIcon,
   SettingIcon,
+  SettingWhiteIcon,
   SignOutIcon,
+  TrashIcon,
   UserCircleActiveIcon,
   UserCircleIcon,
   UserPlusBlackIcon,
