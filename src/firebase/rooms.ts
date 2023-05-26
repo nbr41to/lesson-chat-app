@@ -49,6 +49,16 @@ export const getRooms = async () => {
   return roomsWithLatestMessage;
 };
 
+/* IDからルームを取得 */
+export const getRoomBase = async (roomId: string) => {
+  const currentUser = getCurrentUser();
+  if (!currentUser) throw new Error('Not logged in');
+
+  const roomRef = await getDoc(doc(db, 'rooms', roomId));
+
+  return roomRef.data() as RoomBase;
+};
+
 /* IDからルームの情報を取得 */
 export const getRoom = async (roomId: string) => {
   const currentUser = getCurrentUser();

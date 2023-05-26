@@ -6,6 +6,7 @@ import { getMe, getMyFriends, getUserByPublicId } from '@/firebase/users';
 import { AuthContext } from '@/context/auth';
 import { updateUser } from '@/firebase/users';
 import { useRouter } from 'next/router';
+import { logout } from '@/firebase/authentication';
 
 export default function Account() {
   const router = useRouter();
@@ -55,6 +56,15 @@ export default function Account() {
     }
   };
 
+  /* アカウントの削除 */
+  const handleOnDeleteMe = async () => {};
+
+  /* フレンドとルームを開始 */
+  const handleOnStartRoom = async (friendId: string) => {};
+
+  /* フレンドの削除 */
+  const handleOnDeleteFriend = async (friendId: string) => {};
+
   return (
     <>
       <Head>
@@ -66,6 +76,10 @@ export default function Account() {
           friends={friends}
           onUpdate={handleOnUpdate}
           onSearchFriend={handleOnSearchFriend}
+          onChatStart={handleOnStartRoom}
+          onDeleteMe={handleOnDeleteMe}
+          onDeleteFriend={handleOnDeleteFriend}
+          onLogout={logout}
         />
       )}
     </>
