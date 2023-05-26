@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Room, User } from '@/models/types';
+import { RoomBase } from '@/models/types';
 
 import { NestedPageHeader } from '@/components/NestedPageHeader';
 import styles from './JoinRoomTemplate.module.css';
@@ -7,7 +7,7 @@ import { Avatar } from '@/components/Avatar';
 import { Button } from '@/components/Button';
 
 type Props = {
-  room: Room | undefined;
+  room: RoomBase | undefined;
   onJoinRoom: () => Promise<void>;
   isJoined: boolean;
 };

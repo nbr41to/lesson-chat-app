@@ -1,15 +1,15 @@
-import { Room } from '@/models/types';
+import { RoomBase } from '@/models/types';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { AuthContext } from '@/context/auth';
-import { getRoom, updateRoom } from '@/firebase/rooms';
+import { getRoomBase, updateRoom } from '@/firebase/rooms';
 import { JoinRoomTemplate } from '@/templates/JoinRoomTemplate';
 
 export default function JoinRoom() {
   const router = useRouter();
   const roomId = router.query.roomId as string;
-  const [room, setRoom] = useState<Room>();
+  const [room, setRoom] = useState<RoomBase>();
   const authContext = useContext(AuthContext);
 
   const isJoined = useMemo(() => {
@@ -23,7 +23,7 @@ export default function JoinRoom() {
     if (!authContext.user || !roomId) return;
 
     (async () => {
-      const response = await getRoom(roomId);
+      const response = await getRoomBase(roomId);
       setRoom(response);
     })();
   }, [roomId, authContext.user]);
