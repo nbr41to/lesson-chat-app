@@ -1,0 +1,17 @@
+{
+  "theme_color": "#f5ac67",
+  "background_color": "#686868",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/login",
+  "name": "tope",
+  "short_name": "tope",
+  "description": "chat app",
+  "icons": [
+    {
+      "src": "/icon_162.png",
+      "sizes": "162x162",
+      "type": "image/png"
+    }
+  ]
+}

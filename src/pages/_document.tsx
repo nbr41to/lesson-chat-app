@@ -4,6 +4,8 @@ export default function Document() {
   return (
     <Html lang='en'>
       <Head>
+        <link rel='manifest' href='/manifest.json' />
+        <link rel='apple-touch-icon' href='/icon_162.png'></link>
         <meta
           name='viewport'
           content='width=device-width, initial-scale=1, maximum-scale=1.0'
