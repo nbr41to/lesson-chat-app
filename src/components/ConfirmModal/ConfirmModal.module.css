@@ -26,8 +26,7 @@
 }
 .content > p {
   font-weight: 600;
-  font-size: 10px;
-  line-height: 12px;
+  font-size: 12px;
   flex-grow: 1;
   margin-top: 24px;
 }

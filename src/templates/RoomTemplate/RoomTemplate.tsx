@@ -40,6 +40,7 @@ export const RoomTemplate: FC<Props> = ({
   const currentUser = getCurrentUser();
 
   const handleOnSendMessage = () => {
+    if (!messageText) return;
     onSendMessage(messageText);
     setMessageText('');
   };

@@ -9,7 +9,7 @@ type Props = {
 };
 
 const range = {
-  small: 16,
+  small: 24,
   medium: 48,
   large: 72,
 };

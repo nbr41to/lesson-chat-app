@@ -21,7 +21,8 @@ export const ChatBubble: FC<Props> = ({
     <div className={styles.root}>
       {!isOwn && (
         <div className={styles.avatar}>
-          <Avatar url={iconUrl} name={name} size='small' />
+          <div className={styles.name}>{name}</div>
+          <Avatar url={iconUrl} size='small' />
         </div>
       )}
       <p className={`${styles.bubble} ${bubbleDirection}`}>{message}</p>

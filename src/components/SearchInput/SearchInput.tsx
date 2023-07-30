@@ -10,7 +10,7 @@ type Props = {
 export const SearchInput: FC<Props> = ({ value, onChange }) => {
   return (
     <div className={styles.root}>
-      <SearchIcon />
+      <SearchIcon className={styles.searchIcon} />
       <input
         className={styles.input}
         type='text'
