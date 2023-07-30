@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import styles from './ConfirmModal.module.css';
 import { Button } from '@/components/Button';
-import { CautionIcon } from '@/components/icons';
+import { CautionIcon } from '@/icons';
 
 type Props = {
   isOpen: boolean;

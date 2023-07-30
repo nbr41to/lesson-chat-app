@@ -5,7 +5,7 @@ import ChatCircle from 'public/chat_circle.svg';
 import UserPlusWhite from 'public/user_plus_white.svg';
 import { createElement } from 'react';
 import { action } from '@storybook/addon-actions';
-import { PlusCircleIcon } from '@/components/icons';
+import { PlusCircleIcon } from '@/icons';
 import { userEvent, within } from '@storybook/testing-library';
 
 const meta: Meta<typeof PulldownMenu> = {

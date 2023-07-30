@@ -3,7 +3,7 @@ import { ChangeEvent, FC, useRef, useState } from 'react';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import { IconButton } from '@/components/IconButton';
-import { PlusIcon } from '@/components/icons';
+import { PlusIcon } from '@/icons';
 import { useRouter } from 'next/router';
 import { Avatar } from '@/components/Avatar';
 import { RoomCreateParams, User } from '@/models/types';

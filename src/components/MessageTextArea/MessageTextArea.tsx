@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useEffect, useRef } from 'react';
-import { PencilLineIcon } from '@/components/icons';
+import { PencilLineIcon } from '@/icons';
 import styles from './MessageTextArea.module.css';
 
 type Props = {

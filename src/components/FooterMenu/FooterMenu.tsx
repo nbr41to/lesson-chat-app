@@ -8,7 +8,7 @@ import {
   ChatTeardropDotsIcon,
   UserCircleActiveIcon,
   UserCircleIcon,
-} from '@/components/icons';
+} from '@/icons';
 
 type Props = {};
 

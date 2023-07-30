@@ -1,5 +1,5 @@
 import { ChangeEvent, FC } from 'react';
-import { SearchIcon } from '@/components/icons';
+import { SearchIcon } from '@/icons';
 import styles from './SearchInput.module.css';
 
 type Props = {

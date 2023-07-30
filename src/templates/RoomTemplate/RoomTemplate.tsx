@@ -3,7 +3,7 @@ import { Message, Room, RoomUpdateParams, User } from '@/models/types';
 import { ChatBubble } from '@/components/ChatBubble';
 import { MessageTextArea } from '@/components/MessageTextArea';
 import { getCurrentUser } from '@/firebase/authentication';
-import { PencilIcon, SendIcon, UsersThreeIcon } from '@/components/icons';
+import { PencilIcon, SendIcon, UsersThreeIcon } from '@/icons';
 import { NestedPageHeader } from '@/components/NestedPageHeader';
 import { Drawer } from '@/components/Drawer';
 import { RoomEditForm } from '@/components/RoomEditForm';

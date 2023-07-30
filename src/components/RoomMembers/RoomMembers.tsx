@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { Room, User } from '@/models/types';
 
 import { Avatar } from '@/components/Avatar';
-import { PlusIcon } from '@/components/icons';
+import { PlusIcon } from '@/icons';
 import { Button } from '@/components/Button';
 import { IconButton } from '@/components/IconButton';
 import styles from './RoomMembers.module.css';

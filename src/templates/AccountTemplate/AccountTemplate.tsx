@@ -8,7 +8,7 @@ import {
   SignOutIcon,
   TrashIcon,
   UserPlusBlackIcon,
-} from '@/components/icons';
+} from '@/icons';
 import { Avatar } from '@/components/Avatar';
 import { Button } from '@/components/Button';
 import { User, UserUpdateParams } from '@/models/types';

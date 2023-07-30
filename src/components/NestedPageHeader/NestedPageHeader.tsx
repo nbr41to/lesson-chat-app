@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { ArrowDownIcon, DotsThreeIcon } from '@/components/icons';
+import { ArrowDownIcon, DotsThreeIcon } from '@/icons';
 import { PulldownMenu } from '@/components/PulldownMenu';
 import { IconButton } from '@/components/IconButton';
 import { useRouter } from 'next/router';

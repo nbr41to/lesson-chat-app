@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { NestedPageHeader } from './NestedPageHeader';
 import { createElement } from 'react';
-import { ChatCircleIcon, UserPlusWhiteIcon } from '@/components/icons';
+import { ChatCircleIcon, UserPlusWhiteIcon } from '@/icons';
 
 const meta: Meta<typeof NestedPageHeader> = {
   component: NestedPageHeader,

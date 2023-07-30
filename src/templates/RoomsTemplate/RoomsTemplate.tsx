@@ -4,11 +4,7 @@ import { RoomCreateParams, RoomListItem, User } from '@/models/types';
 import { SearchInput } from '@/components/SearchInput';
 import styles from './RoomsTemplate.module.css';
 import { RoomItem } from '@/components/RoomItem';
-import {
-  ChatCircleIcon,
-  PlusCircleIcon,
-  UserPlusWhiteIcon,
-} from '@/components/icons';
+import { ChatCircleIcon, PlusCircleIcon, UserPlusWhiteIcon } from '@/icons';
 import { PulldownMenu } from '@/components/PulldownMenu';
 import { Drawer } from '@/components/Drawer';
 import { RoomCreateForm } from '@/components/RoomCreateForm';
